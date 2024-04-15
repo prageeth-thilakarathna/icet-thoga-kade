@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 /**
@@ -42,8 +43,8 @@ public class dashboard extends javax.swing.JFrame {
 
         jPanelNavigation = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCustomer = new javax.swing.JButton();
+        btnOrders = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanelPages = new javax.swing.JPanel();
@@ -59,23 +60,33 @@ public class dashboard extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Thoga Kade");
 
-        jButton1.setBackground(new java.awt.Color(254, 254, 255));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(98, 99, 213));
-        jButton1.setText("Customer");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusPainted(false);
+        btnCustomer.setBackground(new java.awt.Color(254, 254, 255));
+        btnCustomer.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCustomer.setForeground(new java.awt.Color(98, 99, 213));
+        btnCustomer.setText("Customer");
+        btnCustomer.setBorder(null);
+        btnCustomer.setBorderPainted(false);
+        btnCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCustomer.setFocusPainted(false);
+        btnCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCustomerAction(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(254, 254, 255));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(98, 99, 213));
-        jButton2.setText("Orders");
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusPainted(false);
+        btnOrders.setBackground(new java.awt.Color(254, 254, 255));
+        btnOrders.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnOrders.setForeground(new java.awt.Color(98, 99, 213));
+        btnOrders.setText("Orders");
+        btnOrders.setBorder(null);
+        btnOrders.setBorderPainted(false);
+        btnOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrders.setFocusPainted(false);
+        btnOrders.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdersAction(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(254, 254, 255));
         jButton3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -112,11 +123,11 @@ public class dashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNavigationLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelNavigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnOrders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelNavigationLayout.setVerticalGroup(
@@ -125,9 +136,9 @@ public class dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(78, 78, 78)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -174,9 +185,23 @@ public class dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void btnCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerAction
+        ordersHome.getOrdersHomeInstance().setVisible(false);
+        jPanelPages.setLayout(new BorderLayout());
+        customerHome.getCustomerHomeInstance().setVisible(true);
+        jPanelPages.add(customerHome.getCustomerHomeInstance(), BorderLayout.CENTER);
+    }//GEN-LAST:event_btnCustomerAction
+
+    private void btnOrdersAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersAction
+        customerHome.getCustomerHomeInstance().setVisible(false);
+        jPanelPages.setLayout(new BorderLayout());
+        ordersHome.getOrdersHomeInstance().setVisible(true);
+        jPanelPages.add(ordersHome.getOrdersHomeInstance(), BorderLayout.CENTER);
+    }//GEN-LAST:event_btnOrdersAction
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCustomer;
+    private javax.swing.JButton btnOrders;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
