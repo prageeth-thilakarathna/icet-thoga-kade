@@ -23,7 +23,7 @@ public class customer {
         this.salary = salary;
     }
 
-    //getters
+    // getters
     public String getId() {
         return id;
     }

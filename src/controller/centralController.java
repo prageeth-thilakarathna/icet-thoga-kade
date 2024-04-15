@@ -7,12 +7,18 @@ package controller;
 
 import database.databaseConnection;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import model.customer;
 
 /**
@@ -38,6 +44,8 @@ public class centralController {
     // colors
     public static final Color MainColor = new Color(98, 99, 213);
     public static final Color SecondColor = new Color(237, 150, 11);
+    
+    public static DecimalFormat df = new DecimalFormat("0.00");
 
     public ArrayList<customer> getCustomerDetails() throws ClassNotFoundException, SQLException {
         ArrayList<customer> customersDetail = new ArrayList<>();
@@ -54,6 +62,32 @@ public class centralController {
         }
 
         return customersDetail;
+    }
+    
+    public JButton[] getOkButton(){
+        // ok button
+        JButton btnOk = new JButton("OK");
+        btnOk.setFont(new Font("", 1, 14));
+        btnOk.setBackground(centralController.MainColor);
+        btnOk.setForeground(Color.white);
+        btnOk.setBorderPainted(false);
+        btnOk.setFocusPainted(false);
+
+        btnOk.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                JOptionPane.getRootFrame().dispose();
+            }
+        });
+        JButton[] btnOkCustom = {btnOk};
+        return btnOkCustom;
+    }
+    
+    public ResultSet getCustomer(String customerId) throws ClassNotFoundException, SQLException{
+        String sql = "SELECT * FROM customer WHERE id='"+customerId+"'";
+        Connection connection = databaseConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        return stm.executeQuery(sql);
     }
 
 }

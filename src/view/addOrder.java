@@ -5,17 +5,49 @@
  */
 package view;
 
+import controller.centralController;
+import database.databaseConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import model.item;
+import model.order;
+import model.orderDetails;
+
 /**
  *
  * @author ygpra
  */
 public class addOrder extends javax.swing.JPanel {
 
+    private static final addOrder instance = new addOrder();
+    private Date date = new Date();
+
     /**
      * Creates new form addOrder
      */
-    public addOrder() {
+    private addOrder() {
         initComponents();
+        orderIdDisplay.setText(generateId());
+        orderIdDisplay.setEditable(false);
+        customerNameDisplay.setEditable(false);
+        btnAdd.setEnabled(false);
+        dateDisplay.setText(getDate());
+
+        for (int i = 0; i < getItems().size(); i++) {
+            itemBox.addItem(getItems().get(i).getDescription());
+        }
+    }
+
+    public static addOrder getAddOrderInstance() {
+        return instance;
     }
 
     /**
@@ -25,35 +57,519 @@ public class addOrder extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
+        forOrderId = new javax.swing.JLabel();
+        forCustomerName = new javax.swing.JLabel();
+        forItem = new javax.swing.JLabel();
+        forUnitPrice = new javax.swing.JLabel();
+        btnAdd = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
+        forCustomerId = new javax.swing.JLabel();
+        customerIdInput = new javax.swing.JTextField();
+        itemBox = new javax.swing.JComboBox();
+        forQty = new javax.swing.JLabel();
+        qtyInput = new javax.swing.JTextField();
+        unitPriceDisplay = new javax.swing.JLabel();
+        forDate = new javax.swing.JLabel();
+        dateDisplay = new javax.swing.JLabel();
+        customerNameDisplay = new javax.swing.JTextField();
+        orderIdDisplay = new javax.swing.JTextField();
+        qtyError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(239, 241, 255));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(12, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Add Order");
+        title.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(12, 0, 0));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("Add Order");
+
+        forOrderId.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forOrderId.setForeground(new java.awt.Color(12, 0, 0));
+        forOrderId.setText("Order ID : ");
+
+        forCustomerName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forCustomerName.setForeground(new java.awt.Color(12, 0, 0));
+        forCustomerName.setText("Customer Name : ");
+
+        forItem.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forItem.setForeground(new java.awt.Color(12, 0, 0));
+        forItem.setText("Item : ");
+
+        forUnitPrice.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forUnitPrice.setForeground(new java.awt.Color(12, 0, 0));
+        forUnitPrice.setText("Unit Price : ");
+
+        btnAdd.setBackground(new java.awt.Color(237, 150, 11));
+        btnAdd.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(239, 241, 255));
+        btnAdd.setText("Add");
+        btnAdd.setBorder(null);
+        btnAdd.setBorderPainted(false);
+        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdd.setFocusPainted(false);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setBackground(new java.awt.Color(98, 99, 213));
+        btnCancel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(239, 241, 255));
+        btnCancel.setText("Cancel");
+        btnCancel.setBorder(null);
+        btnCancel.setBorderPainted(false);
+        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancel.setFocusPainted(false);
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
+        forCustomerId.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forCustomerId.setForeground(new java.awt.Color(12, 0, 0));
+        forCustomerId.setText("Customer ID : ");
+
+        customerIdInput.setBackground(new java.awt.Color(199, 200, 204));
+        customerIdInput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        customerIdInput.setForeground(new java.awt.Color(12, 0, 0));
+        customerIdInput.setBorder(null);
+        customerIdInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                customerIdKeyTyped(evt);
+            }
+        });
+
+        itemBox.setBackground(new java.awt.Color(199, 200, 204));
+        itemBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        itemBox.setForeground(new java.awt.Color(12, 0, 0));
+        itemBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Item" }));
+        itemBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectItemAction(evt);
+            }
+        });
+
+        forQty.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forQty.setForeground(new java.awt.Color(12, 0, 0));
+        forQty.setText("Quantity : ");
+
+        qtyInput.setBackground(new java.awt.Color(199, 200, 204));
+        qtyInput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        qtyInput.setForeground(new java.awt.Color(12, 0, 0));
+        qtyInput.setBorder(null);
+        qtyInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                qtyKeyTyped(evt);
+            }
+        });
+
+        unitPriceDisplay.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        unitPriceDisplay.setForeground(new java.awt.Color(12, 0, 0));
+        unitPriceDisplay.setText("Rs. 0.00");
+
+        forDate.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forDate.setForeground(new java.awt.Color(12, 0, 0));
+        forDate.setText("Date : ");
+
+        dateDisplay.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        dateDisplay.setForeground(new java.awt.Color(12, 0, 0));
+        dateDisplay.setText("2024-04-15");
+
+        customerNameDisplay.setBackground(new java.awt.Color(169, 169, 169));
+        customerNameDisplay.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        customerNameDisplay.setForeground(new java.awt.Color(12, 0, 0));
+        customerNameDisplay.setBorder(null);
+        customerNameDisplay.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                customerNameDisplaycustomerIdKeyTyped(evt);
+            }
+        });
+
+        orderIdDisplay.setBackground(new java.awt.Color(169, 169, 169));
+        orderIdDisplay.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        orderIdDisplay.setForeground(new java.awt.Color(12, 0, 0));
+        orderIdDisplay.setBorder(null);
+        orderIdDisplay.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                orderIdDisplaycustomerIdKeyTyped(evt);
+            }
+        });
+
+        qtyError.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(forCustomerName)
+                            .addComponent(forItem)
+                            .addComponent(forUnitPrice)
+                            .addComponent(forCustomerId)
+                            .addComponent(forQty)
+                            .addComponent(forDate)
+                            .addComponent(forOrderId))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(orderIdDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(qtyInput, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(qtyError, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dateDisplay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(customerIdInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(itemBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(unitPriceDisplay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(customerNameDisplay, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 182, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(392, Short.MAX_VALUE))
+                .addComponent(title)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(forOrderId)
+                    .addComponent(orderIdDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(forCustomerId)
+                    .addComponent(customerIdInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(forCustomerName)
+                    .addComponent(customerNameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(forItem)
+                    .addComponent(itemBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(forUnitPrice)
+                    .addComponent(unitPriceDisplay))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(forQty)
+                    .addComponent(qtyInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(qtyError))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(forDate)
+                    .addComponent(dateDisplay))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // add order
+        try {
+            String orderId = orderIdDisplay.getText();
+            String custId = customerIdInput.getText();
+            String code = getItemCode(itemBox.getSelectedIndex());
+            int quantity = Integer.parseInt(qtyInput.getText());
+            double unitPrice = getUnitPrice(itemBox.getSelectedIndex());
+            String date = dateDisplay.getText();
+
+            order newOrder = new order(orderId, date, custId);
+            orderDetails newOrderDetails = new orderDetails(orderId, code, quantity, unitPrice);
+            addOrder(newOrder);
+            addOrderDetails(newOrderDetails);
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
+        }
+
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    public void addOrder(order ob) throws ClassNotFoundException, SQLException {
+        String sql = "INSERT INTO orders VALUES(?,?,?)";
+        Connection connection = databaseConnection.getInstance().getConnection();
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1, ob.getId());
+        stm.setString(2, ob.getDate());
+        stm.setString(3, ob.getCustomerId());
+        stm.executeUpdate();
+
+        orderIdDisplay.setText(generateId());
+        dateDisplay.setText(getDate());
+        customerIdInput.setText("");
+    }
+
+    public void addOrderDetails(orderDetails ob) throws ClassNotFoundException, SQLException {
+        String sql = "INSERT INTO order_detail VALUES(?,?,?,?)";
+        Connection connection = databaseConnection.getInstance().getConnection();
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1, ob.getOrderId());
+        stm.setString(2, ob.getItemCode());
+        stm.setInt(3, ob.getQty());
+        stm.setDouble(4, ob.getUnitPrice());
+        int res = stm.executeUpdate();
+
+        if (res > 0) {
+            JOptionPane.showOptionDialog(null, ob.getOrderId() + " Order Added is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
+            itemBox.setSelectedIndex(0);
+            qtyInput.setText("");
+        } else {
+            JOptionPane.showOptionDialog(null, "Failed! Has some issues with Adding " + ob.getOrderId() + " Order.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
+        }
+    }
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        orderIdDisplay.setText(generateId());
+        dateDisplay.setText(getDate());
+        customerIdInput.setText("");
+        itemBox.setSelectedIndex(0);
+        qtyInput.setText("");
+
+        instance.setVisible(false);
+        ordersHome.getOrdersHomeInstance().setVisible(true);
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void customerIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerIdKeyTyped
+        customerIdInput.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String value = customerIdInput.getText();
+                customerNameDisplay.setText(getCustomerName(value));
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String value = customerIdInput.getText();
+                customerNameDisplay.setText(getCustomerName(value));
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        });
+    }//GEN-LAST:event_customerIdKeyTyped
+
+    private void customerNameDisplaycustomerIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerNameDisplaycustomerIdKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customerNameDisplaycustomerIdKeyTyped
+
+    private void orderIdDisplaycustomerIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_orderIdDisplaycustomerIdKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_orderIdDisplaycustomerIdKeyTyped
+
+    private void selectItemAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectItemAction
+        int index = itemBox.getSelectedIndex();
+        if (index != 0) {
+            for (int i = 1; i <= getItems().size(); i++) {
+                if (index == i) {
+                    unitPriceDisplay.setText("Rs. " + String.valueOf(centralController.df.format(getUnitPrice(i))));
+                    String custName = customerNameDisplay.getText();
+                    String qtyValue = qtyInput.getText();
+                    if (custName.length() > 0 & index > 0 & qtyValue.length() > 0) {
+                        btnAdd.setEnabled(true);
+                    }
+                }
+            }
+        } else {
+            unitPriceDisplay.setText("Rs. 0.00");
+            btnAdd.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_selectItemAction
+
+    private void qtyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyTyped
+        String value = qtyInput.getText();
+        char ch = evt.getKeyChar();
+        validateQty(value, ch);
+        if (value.length() > 0 || (ch >= '1' && ch <= '9')) {
+            String custName = customerNameDisplay.getText();
+            int itemIndex = itemBox.getSelectedIndex();
+            if (custName.length() > 0 & itemIndex > 0) {
+                btnAdd.setEnabled(true);
+            }
+        } else {
+            btnAdd.setEnabled(false);
+        }
+    }//GEN-LAST:event_qtyKeyTyped
+
+    public void validateQty(String value, char ch) {
+        int length = value.length();
+
+        boolean condition = true;
+        int count = 0;
+        if (length > 0) {
+            count++;
+        } else {
+            count = 0;
+        }
+
+        if (count == 0 & ch == '0') {
+            condition = false;
+        }
+
+        if ((length >= 0 && length < 2) & condition & (ch >= '0' && ch <= '9') || (int) ch == 8) {
+            qtyInput.setEditable(true);
+            qtyError.setText("");
+        } else {
+            qtyInput.setEditable(false);
+
+            if (condition == false) {
+                qtyError.setText("* Not a Q==0");
+            } else if (length == 2) {
+                qtyError.setText("* only 2 digits");
+            } else {
+                qtyError.setText("* only digits(0-9)");
+            }
+        }
+    }
+
+    public String getCustomerName(String customerId) {
+        try {
+            ResultSet resultCustomer = centralController.getInstance().getCustomer(customerId);
+
+            if (resultCustomer.next()) {
+                String custName = customerNameDisplay.getText();
+                String qtyValue = qtyInput.getText();
+                int itemIndex = itemBox.getSelectedIndex();
+                if (custName.length() > 0 & itemIndex > 0 & qtyValue.length() > 0) {
+                    btnAdd.setEnabled(true);
+                }
+
+                return resultCustomer.getString("name");
+            } else {
+                btnAdd.setEnabled(false);
+                return "";
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showOptionDialog(null, e.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
+        }
+        return null;
+    }
+
+    // generate orderId
+    public String generateId() {
+        try {
+            ResultSet resultOrderRowCount = getOrdersSize();
+            resultOrderRowCount.next();
+
+            int size = resultOrderRowCount.getInt("row_count");
+
+            if (size > 0) {
+                ResultSet resultSet = getLastOrderId();
+                resultSet.next();
+
+                String lastId = resultSet.getString("id");
+
+                String[] part = lastId.split("D");
+                int num = Integer.parseInt(part[1]);
+                num++;
+
+                return String.format("D%03d", num);
+            } else {
+                return "D001";
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showOptionDialog(null, e.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
+        }
+        return null;
+    }
+
+    // get items
+    public ArrayList<item> getItems() {
+        ArrayList<item> items = new ArrayList<item>();
+        String sql = "SELECT * FROM item";
+
+        try {
+            Connection connection = databaseConnection.getInstance().getConnection();
+            Statement stm = connection.createStatement();
+            ResultSet resultSet = stm.executeQuery(sql);
+
+            while (resultSet.next()) {
+                item newItem = new item(resultSet.getString("code"), resultSet.getString("description"), resultSet.getDouble("unitPrice"), resultSet.getInt("qtyOnHand"));
+                items.add(newItem);
+            }
+
+            return items;
+
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showOptionDialog(null, e.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
+        }
+        return null;
+    }
+
+    // get item code
+    public String getItemCode(int index) {
+        for (int i = 0; i < getItems().size(); i++) {
+            if ((index - 1) == i) {
+                return getItems().get(i).getCode();
+            }
+        }
+        return null;
+    }
+
+    // get unit price
+    public double getUnitPrice(int index) {
+        for (int i = 0; i < getItems().size(); i++) {
+            if ((index - 1) == i) {
+                return getItems().get(i).getUnitPrice();
+            }
+        }
+        return 0;
+    }
+
+    // get date
+    public String getDate() {
+        String year = String.valueOf(date.getYear()).charAt(1) + "" + String.valueOf(date.getYear()).charAt(2);
+        return "20" + year + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    }
+
+    public ResultSet getLastOrderId() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM orders ORDER BY id DESC LIMIT 1";
+        Connection connection = databaseConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        return stm.executeQuery(sql);
+    }
+
+    public ResultSet getOrdersSize() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT COUNT(*) AS row_count FROM orders";
+        Connection connection = databaseConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        return stm.executeQuery(sql);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JTextField customerIdInput;
+    private javax.swing.JTextField customerNameDisplay;
+    private javax.swing.JLabel dateDisplay;
+    private javax.swing.JLabel forCustomerId;
+    private javax.swing.JLabel forCustomerName;
+    private javax.swing.JLabel forDate;
+    private javax.swing.JLabel forItem;
+    private javax.swing.JLabel forOrderId;
+    private javax.swing.JLabel forQty;
+    private javax.swing.JLabel forUnitPrice;
+    private javax.swing.JComboBox itemBox;
+    private javax.swing.JTextField orderIdDisplay;
+    private javax.swing.JLabel qtyError;
+    private javax.swing.JTextField qtyInput;
+    private javax.swing.JLabel title;
+    private javax.swing.JLabel unitPriceDisplay;
     // End of variables declaration//GEN-END:variables
 }
