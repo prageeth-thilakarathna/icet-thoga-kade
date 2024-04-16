@@ -89,5 +89,26 @@ public class centralController {
         Statement stm = connection.createStatement();
         return stm.executeQuery(sql);
     }
+    
+    public ResultSet getOrder(String orderId) throws ClassNotFoundException, SQLException{
+        String sql = "SELECT * FROM orders WHERE id='"+orderId+"'";
+        Connection connection = databaseConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        return stm.executeQuery(sql);
+    }
+    
+    public ResultSet getOrderDetails(String orderId) throws ClassNotFoundException, SQLException{
+        String sql = "SELECT * FROM order_detail WHERE orderId='"+orderId+"'";
+        Connection connection = databaseConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        return stm.executeQuery(sql);
+    }
+    
+    public ResultSet getItem(String code) throws ClassNotFoundException, SQLException{
+        String sql = "SELECT * FROM item WHERE code='"+code+"'";
+        Connection connection = databaseConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        return stm.executeQuery(sql);
+    }
 
 }

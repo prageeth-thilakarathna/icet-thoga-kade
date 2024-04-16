@@ -263,10 +263,11 @@ public class addOrder extends javax.swing.JPanel {
                     .addComponent(forUnitPrice)
                     .addComponent(unitPriceDisplay))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(forQty)
-                    .addComponent(qtyInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(qtyError))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(qtyError)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(forQty)
+                        .addComponent(qtyInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(forDate)
@@ -297,7 +298,6 @@ public class addOrder extends javax.swing.JPanel {
         } catch (ClassNotFoundException | SQLException ex) {
             JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
         }
-
     }//GEN-LAST:event_btnAddActionPerformed
 
     public void addOrder(order ob) throws ClassNotFoundException, SQLException {
@@ -389,7 +389,6 @@ public class addOrder extends javax.swing.JPanel {
             unitPriceDisplay.setText("Rs. 0.00");
             btnAdd.setEnabled(false);
         }
-
     }//GEN-LAST:event_selectItemAction
 
     private void qtyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyTyped

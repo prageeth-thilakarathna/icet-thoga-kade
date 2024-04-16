@@ -37,7 +37,7 @@ public class ordersHome extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         btnAddOrder = new javax.swing.JButton();
-        btnSearchCustomer = new javax.swing.JButton();
+        btnSearchOrder = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -63,17 +63,17 @@ public class ordersHome extends javax.swing.JPanel {
             }
         });
 
-        btnSearchCustomer.setBackground(new java.awt.Color(98, 99, 213));
-        btnSearchCustomer.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnSearchCustomer.setForeground(new java.awt.Color(239, 241, 255));
-        btnSearchCustomer.setText("Search Order");
-        btnSearchCustomer.setBorder(null);
-        btnSearchCustomer.setBorderPainted(false);
-        btnSearchCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSearchCustomer.setFocusPainted(false);
-        btnSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
+        btnSearchOrder.setBackground(new java.awt.Color(98, 99, 213));
+        btnSearchOrder.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnSearchOrder.setForeground(new java.awt.Color(239, 241, 255));
+        btnSearchOrder.setText("Search Order");
+        btnSearchOrder.setBorder(null);
+        btnSearchOrder.setBorderPainted(false);
+        btnSearchOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSearchOrder.setFocusPainted(false);
+        btnSearchOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchCustomerActionPerformed(evt);
+                btnSearchOrderAction(evt);
             }
         });
 
@@ -133,7 +133,7 @@ public class ordersHome extends javax.swing.JPanel {
                     .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(198, Short.MAX_VALUE))
         );
@@ -145,7 +145,7 @@ public class ordersHome extends javax.swing.JPanel {
                 .addGap(61, 61, 61)
                 .addComponent(btnAddOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -164,13 +164,13 @@ public class ordersHome extends javax.swing.JPanel {
         pagePanel.add(addOrder.getAddOrderInstance(), BorderLayout.CENTER);
     }//GEN-LAST:event_btnAddOrderAction
 
-    private void btnSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerActionPerformed
+    private void btnSearchOrderAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchOrderAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
-        searchCustomer.getSearchCustomerInstance().setVisible(true);
+        searchOrder.getSearchOrderInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
-        pagePanel.add(searchCustomer.getSearchCustomerInstance(), BorderLayout.CENTER);
-    }//GEN-LAST:event_btnSearchCustomerActionPerformed
+        pagePanel.add(searchOrder.getSearchOrderInstance(), BorderLayout.CENTER);
+    }//GEN-LAST:event_btnSearchOrderAction
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         pagePanel = dashboard.getHomeInstance().getPagePanel();
@@ -201,7 +201,7 @@ public class ordersHome extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddOrder;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnSearchCustomer;
+    private javax.swing.JButton btnSearchOrder;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnView;
     private javax.swing.JLabel jLabel1;
