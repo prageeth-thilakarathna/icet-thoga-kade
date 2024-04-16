@@ -35,7 +35,7 @@ public class ordersHome extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
         btnAddOrder = new javax.swing.JButton();
         btnSearchOrder = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -44,10 +44,10 @@ public class ordersHome extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(239, 241, 255));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(12, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Orders Page");
+        title.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(12, 0, 0));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("Orders Page");
 
         btnAddOrder.setBackground(new java.awt.Color(98, 99, 213));
         btnAddOrder.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -87,7 +87,7 @@ public class ordersHome extends javax.swing.JPanel {
         btnUpdate.setFocusPainted(false);
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnUpdateAction(evt);
             }
         });
 
@@ -125,7 +125,7 @@ public class ordersHome extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(196, 196, 196)
@@ -141,7 +141,7 @@ public class ordersHome extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(title)
                 .addGap(61, 61, 61)
                 .addComponent(btnAddOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -172,13 +172,13 @@ public class ordersHome extends javax.swing.JPanel {
         pagePanel.add(searchOrder.getSearchOrderInstance(), BorderLayout.CENTER);
     }//GEN-LAST:event_btnSearchOrderAction
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnUpdateAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
-        updateCustomer.getUpdateCustomerInstance().setVisible(true);
+        updateOrder.getUpdateOrderInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
-        pagePanel.add(updateCustomer.getUpdateCustomerInstance(), BorderLayout.CENTER);
-    }//GEN-LAST:event_btnUpdateActionPerformed
+        pagePanel.add(updateOrder.getUpdateOrderInstance(), BorderLayout.CENTER);
+    }//GEN-LAST:event_btnUpdateAction
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         pagePanel = dashboard.getHomeInstance().getPagePanel();
@@ -204,6 +204,6 @@ public class ordersHome extends javax.swing.JPanel {
     private javax.swing.JButton btnSearchOrder;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnView;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
