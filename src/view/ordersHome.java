@@ -39,9 +39,9 @@ public class ordersHome extends javax.swing.JPanel {
         title = new javax.swing.JLabel();
         btnAddOrder = new javax.swing.JButton();
         btnSearchOrder = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnView = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
+        btnUpdateOrder = new javax.swing.JButton();
+        btnViewOrders = new javax.swing.JButton();
+        btnDeleteOrder = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(239, 241, 255));
 
@@ -78,45 +78,45 @@ public class ordersHome extends javax.swing.JPanel {
             }
         });
 
-        btnUpdate.setBackground(new java.awt.Color(98, 99, 213));
-        btnUpdate.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnUpdate.setForeground(new java.awt.Color(239, 241, 255));
-        btnUpdate.setText("Update Order");
-        btnUpdate.setBorder(null);
-        btnUpdate.setBorderPainted(false);
-        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnUpdate.setFocusPainted(false);
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateOrder.setBackground(new java.awt.Color(98, 99, 213));
+        btnUpdateOrder.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnUpdateOrder.setForeground(new java.awt.Color(239, 241, 255));
+        btnUpdateOrder.setText("Update Order");
+        btnUpdateOrder.setBorder(null);
+        btnUpdateOrder.setBorderPainted(false);
+        btnUpdateOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateOrder.setFocusPainted(false);
+        btnUpdateOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateAction(evt);
+                btnUpdateOrderAction(evt);
             }
         });
 
-        btnView.setBackground(new java.awt.Color(98, 99, 213));
-        btnView.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnView.setForeground(new java.awt.Color(239, 241, 255));
-        btnView.setText("View Orders");
-        btnView.setBorder(null);
-        btnView.setBorderPainted(false);
-        btnView.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnView.setFocusPainted(false);
-        btnView.addActionListener(new java.awt.event.ActionListener() {
+        btnViewOrders.setBackground(new java.awt.Color(98, 99, 213));
+        btnViewOrders.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnViewOrders.setForeground(new java.awt.Color(239, 241, 255));
+        btnViewOrders.setText("View Orders");
+        btnViewOrders.setBorder(null);
+        btnViewOrders.setBorderPainted(false);
+        btnViewOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnViewOrders.setFocusPainted(false);
+        btnViewOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewAction(evt);
+                btnViewOrdersAction(evt);
             }
         });
 
-        btnDelete.setBackground(new java.awt.Color(98, 99, 213));
-        btnDelete.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(239, 241, 255));
-        btnDelete.setText("Delete Order");
-        btnDelete.setBorder(null);
-        btnDelete.setBorderPainted(false);
-        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDelete.setFocusPainted(false);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteOrder.setBackground(new java.awt.Color(98, 99, 213));
+        btnDeleteOrder.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnDeleteOrder.setForeground(new java.awt.Color(239, 241, 255));
+        btnDeleteOrder.setText("Delete Order");
+        btnDeleteOrder.setBorder(null);
+        btnDeleteOrder.setBorderPainted(false);
+        btnDeleteOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDeleteOrder.setFocusPainted(false);
+        btnDeleteOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteAction(evt);
+                btnDeleteOrderAction(evt);
             }
         });
 
@@ -128,15 +128,15 @@ public class ordersHome extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(196, 196, 196)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(206, 206, 206)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(198, Short.MAX_VALUE))
+                    .addComponent(btnAddOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSearchOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUpdateOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(btnViewOrders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeleteOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(206, 206, 206))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,16 +144,16 @@ public class ordersHome extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(title)
                 .addGap(61, 61, 61)
-                .addComponent(btnAddOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addComponent(btnAddOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSearchOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUpdateOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnViewOrders, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDeleteOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addGap(84, 84, 84))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -175,16 +175,16 @@ public class ordersHome extends javax.swing.JPanel {
         centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnSearchOrderAction
 
-    private void btnUpdateAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAction
+    private void btnUpdateOrderAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
         updateOrder.getUpdateOrderInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(updateOrder.getUpdateOrderInstance(), BorderLayout.CENTER);
         centralController.getInstance().disableNavBtn();
-    }//GEN-LAST:event_btnUpdateAction
+    }//GEN-LAST:event_btnUpdateOrderAction
 
-    private void btnViewAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAction
+    private void btnViewOrdersAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrdersAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
         viewOrders.getViewOrdersInstance().setVisible(true);
@@ -192,24 +192,24 @@ public class ordersHome extends javax.swing.JPanel {
         pagePanel.add(viewOrders.getViewOrdersInstance(), BorderLayout.CENTER);
         viewOrders.getViewOrdersInstance().setTableInfo();
         centralController.getInstance().disableNavBtn();
-    }//GEN-LAST:event_btnViewAction
+    }//GEN-LAST:event_btnViewOrdersAction
 
-    private void btnDeleteAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAction
+    private void btnDeleteOrderAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteOrderAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
         deleteOrder.getDeleteOrderInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(deleteOrder.getDeleteOrderInstance(), BorderLayout.CENTER);
         centralController.getInstance().disableNavBtn();
-    }//GEN-LAST:event_btnDeleteAction
+    }//GEN-LAST:event_btnDeleteOrderAction
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddOrder;
-    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDeleteOrder;
     private javax.swing.JButton btnSearchOrder;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnView;
+    private javax.swing.JButton btnUpdateOrder;
+    private javax.swing.JButton btnViewOrders;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

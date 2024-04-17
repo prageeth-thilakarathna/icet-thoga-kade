@@ -29,11 +29,11 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnAddOrder" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnSearchOrder" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnUpdateOrder" alignment="0" pref="182" max="32767" attributes="0"/>
-                  <Component id="btnViewOrders" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnDeleteOrder" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnAddItem" alignment="0" pref="182" max="32767" attributes="0"/>
+                  <Component id="btnSearchItem" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnUpdateItem" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnViewItems" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnDeleteItem" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
           </Group>
@@ -45,15 +45,15 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="title" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-              <Component id="btnAddOrder" pref="44" max="32767" attributes="0"/>
+              <Component id="btnAddItem" pref="44" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="btnSearchOrder" pref="44" max="32767" attributes="0"/>
+              <Component id="btnSearchItem" pref="44" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="btnUpdateOrder" pref="44" max="32767" attributes="0"/>
+              <Component id="btnUpdateItem" pref="44" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="btnViewOrders" pref="44" max="32767" attributes="0"/>
+              <Component id="btnViewItems" pref="44" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="btnDeleteOrder" pref="47" max="32767" attributes="0"/>
+              <Component id="btnDeleteItem" pref="47" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -69,10 +69,10 @@
           <Color blue="0" green="0" red="c" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Orders Page"/>
+        <Property name="text" type="java.lang.String" value="Item Page"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAddOrder">
+    <Component class="javax.swing.JButton" name="btnAddItem">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d5" green="63" red="62" type="rgb"/>
@@ -83,7 +83,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="f1" red="ef" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Add Order"/>
+        <Property name="text" type="java.lang.String" value="Add Item"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -94,10 +94,10 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddOrderAction"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddItemAction"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSearchOrder">
+    <Component class="javax.swing.JButton" name="btnSearchItem">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d5" green="63" red="62" type="rgb"/>
@@ -108,7 +108,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="f1" red="ef" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Search Order"/>
+        <Property name="text" type="java.lang.String" value="Search Item"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -119,10 +119,10 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchOrderAction"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchItemAction"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnUpdateOrder">
+    <Component class="javax.swing.JButton" name="btnUpdateItem">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d5" green="63" red="62" type="rgb"/>
@@ -133,7 +133,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="f1" red="ef" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Update Order"/>
+        <Property name="text" type="java.lang.String" value="Update Item"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -144,10 +144,10 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateOrderAction"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateItemAction"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnViewOrders">
+    <Component class="javax.swing.JButton" name="btnViewItems">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d5" green="63" red="62" type="rgb"/>
@@ -158,7 +158,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="f1" red="ef" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="View Orders"/>
+        <Property name="text" type="java.lang.String" value="View Items"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -169,10 +169,10 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewOrdersAction"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewItemsAction"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnDeleteOrder">
+    <Component class="javax.swing.JButton" name="btnDeleteItem">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d5" green="63" red="62" type="rgb"/>
@@ -183,7 +183,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="f1" red="ef" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Delete Order"/>
+        <Property name="text" type="java.lang.String" value="Delete Item"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -194,7 +194,7 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteOrderAction"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteItemAction"/>
       </Events>
     </Component>
   </SubComponents>

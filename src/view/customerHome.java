@@ -41,9 +41,9 @@ public class customerHome extends javax.swing.JPanel {
         title = new javax.swing.JLabel();
         btnAddCustomer = new javax.swing.JButton();
         btnSearchCustomer = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnView = new javax.swing.JButton();
+        btnUpdateCustomer = new javax.swing.JButton();
+        btnDeleteCustomer = new javax.swing.JButton();
+        btnViewCustomers = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(239, 241, 255));
 
@@ -76,49 +76,49 @@ public class customerHome extends javax.swing.JPanel {
         btnSearchCustomer.setFocusPainted(false);
         btnSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchCustomerActionPerformed(evt);
+                btnSearchCustomerAction(evt);
             }
         });
 
-        btnUpdate.setBackground(new java.awt.Color(98, 99, 213));
-        btnUpdate.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnUpdate.setForeground(new java.awt.Color(239, 241, 255));
-        btnUpdate.setText("Update Customer");
-        btnUpdate.setBorder(null);
-        btnUpdate.setBorderPainted(false);
-        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnUpdate.setFocusPainted(false);
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateCustomer.setBackground(new java.awt.Color(98, 99, 213));
+        btnUpdateCustomer.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnUpdateCustomer.setForeground(new java.awt.Color(239, 241, 255));
+        btnUpdateCustomer.setText("Update Customer");
+        btnUpdateCustomer.setBorder(null);
+        btnUpdateCustomer.setBorderPainted(false);
+        btnUpdateCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateCustomer.setFocusPainted(false);
+        btnUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnUpdateCustomerAction(evt);
             }
         });
 
-        btnDelete.setBackground(new java.awt.Color(98, 99, 213));
-        btnDelete.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(239, 241, 255));
-        btnDelete.setText("Delete Customer");
-        btnDelete.setBorder(null);
-        btnDelete.setBorderPainted(false);
-        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDelete.setFocusPainted(false);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteCustomer.setBackground(new java.awt.Color(98, 99, 213));
+        btnDeleteCustomer.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnDeleteCustomer.setForeground(new java.awt.Color(239, 241, 255));
+        btnDeleteCustomer.setText("Delete Customer");
+        btnDeleteCustomer.setBorder(null);
+        btnDeleteCustomer.setBorderPainted(false);
+        btnDeleteCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDeleteCustomer.setFocusPainted(false);
+        btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnDeleteCustomerAction(evt);
             }
         });
 
-        btnView.setBackground(new java.awt.Color(98, 99, 213));
-        btnView.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnView.setForeground(new java.awt.Color(239, 241, 255));
-        btnView.setText("View Customers");
-        btnView.setBorder(null);
-        btnView.setBorderPainted(false);
-        btnView.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnView.setFocusPainted(false);
-        btnView.addActionListener(new java.awt.event.ActionListener() {
+        btnViewCustomers.setBackground(new java.awt.Color(98, 99, 213));
+        btnViewCustomers.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnViewCustomers.setForeground(new java.awt.Color(239, 241, 255));
+        btnViewCustomers.setText("View Customers");
+        btnViewCustomers.setBorder(null);
+        btnViewCustomers.setBorderPainted(false);
+        btnViewCustomers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnViewCustomers.setFocusPainted(false);
+        btnViewCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewActionPerformed(evt);
+                btnViewCustomersAction(evt);
             }
         });
 
@@ -127,66 +127,68 @@ public class customerHome extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(196, 196, 196)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(198, 198, 198))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSearchCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUpdateCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                            .addComponent(btnViewCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDeleteCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAddCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(206, 206, 206))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap()
                 .addComponent(title)
                 .addGap(61, 61, 61)
-                .addComponent(btnAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addComponent(btnAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSearchCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUpdateCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnViewCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDeleteCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addGap(84, 84, 84))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerActionPerformed
+    private void btnSearchCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
         searchCustomer.getSearchCustomerInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(searchCustomer.getSearchCustomerInstance(), BorderLayout.CENTER);
         centralController.getInstance().disableNavBtn();
-    }//GEN-LAST:event_btnSearchCustomerActionPerformed
+    }//GEN-LAST:event_btnSearchCustomerAction
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnUpdateCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCustomerAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
         updateCustomer.getUpdateCustomerInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(updateCustomer.getUpdateCustomerInstance(), BorderLayout.CENTER);
         centralController.getInstance().disableNavBtn();
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    }//GEN-LAST:event_btnUpdateCustomerAction
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
         deleteCustomer.getDeleteCustomerInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(deleteCustomer.getDeleteCustomerInstance(), BorderLayout.CENTER);
         centralController.getInstance().disableNavBtn();
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnDeleteCustomerAction
 
-    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+    private void btnViewCustomersAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCustomersAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
         viewCustomers.getViewCustomersInstance().setVisible(true);
@@ -194,7 +196,7 @@ public class customerHome extends javax.swing.JPanel {
         pagePanel.add(viewCustomers.getViewCustomersInstance(), BorderLayout.CENTER);
         viewCustomers.getViewCustomersInstance().setTableInfo();
         centralController.getInstance().disableNavBtn();
-    }//GEN-LAST:event_btnViewActionPerformed
+    }//GEN-LAST:event_btnViewCustomersAction
 
     private void btnAddCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
@@ -208,10 +210,10 @@ public class customerHome extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCustomer;
-    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDeleteCustomer;
     private javax.swing.JButton btnSearchCustomer;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnView;
+    private javax.swing.JButton btnUpdateCustomer;
+    private javax.swing.JButton btnViewCustomers;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

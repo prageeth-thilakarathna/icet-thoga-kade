@@ -6,8 +6,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.util.ArrayList;
 import javax.swing.JButton;
 
 /**
@@ -24,8 +22,8 @@ public class dashboard extends javax.swing.JFrame {
     private dashboard() {
         initComponents();
         setLocationRelativeTo(null);
-        jPanelPages.setLayout(new GridLayout(1,1));
-        jPanelPages.add(customerHome.getCustomerHomeInstance());
+        jPanelPages.setLayout(new BorderLayout());
+        jPanelPages.add(customerHome.getCustomerHomeInstance(), BorderLayout.CENTER);
     }
     
     public static dashboard getHomeInstance(){
@@ -192,7 +190,11 @@ public class dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnItemAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItemAction
-        
+        ordersHome.getOrdersHomeInstance().setVisible(false);
+        customerHome.getCustomerHomeInstance().setVisible(false);
+        jPanelPages.setLayout(new BorderLayout());
+        itemHome.getItemHomeInstance().setVisible(true);
+        jPanelPages.add(itemHome.getItemHomeInstance(), BorderLayout.CENTER);
     }//GEN-LAST:event_btnItemAction
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -201,6 +203,7 @@ public class dashboard extends javax.swing.JFrame {
 
     private void btnCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerAction
         ordersHome.getOrdersHomeInstance().setVisible(false);
+        itemHome.getItemHomeInstance().setVisible(false);
         jPanelPages.setLayout(new BorderLayout());
         customerHome.getCustomerHomeInstance().setVisible(true);
         jPanelPages.add(customerHome.getCustomerHomeInstance(), BorderLayout.CENTER);
@@ -208,6 +211,7 @@ public class dashboard extends javax.swing.JFrame {
 
     private void btnOrdersAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersAction
         customerHome.getCustomerHomeInstance().setVisible(false);
+        itemHome.getItemHomeInstance().setVisible(false);
         jPanelPages.setLayout(new BorderLayout());
         ordersHome.getOrdersHomeInstance().setVisible(true);
         jPanelPages.add(ordersHome.getOrdersHomeInstance(), BorderLayout.CENTER);
