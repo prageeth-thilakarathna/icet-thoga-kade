@@ -342,6 +342,7 @@ public class addOrder extends javax.swing.JPanel {
 
         instance.setVisible(false);
         ordersHome.getOrdersHomeInstance().setVisible(true);
+        centralController.getInstance().enableNavBtn();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void customerIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerIdKeyTyped

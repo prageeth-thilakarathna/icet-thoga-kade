@@ -278,6 +278,7 @@ public class deleteOrder extends javax.swing.JPanel {
 
         instance.setVisible(false);
         ordersHome.getOrdersHomeInstance().setVisible(true);
+        centralController.getInstance().enableNavBtn();
     }//GEN-LAST:event_btnCancelAction
 
     private void btnSearchAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAction

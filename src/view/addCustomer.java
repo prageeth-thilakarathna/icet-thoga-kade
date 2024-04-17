@@ -243,6 +243,7 @@ public class addCustomer extends javax.swing.JPanel {
         
         addCust.setVisible(false);
         customerHome.getCustomerHomeInstance().setVisible(true);
+        centralController.getInstance().enableNavBtn();
     }//GEN-LAST:event_btnCancelActionPerformed
 
 

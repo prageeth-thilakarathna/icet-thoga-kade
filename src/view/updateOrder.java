@@ -276,6 +276,7 @@ public class updateOrder extends javax.swing.JPanel {
 
         instance.setVisible(false);
         ordersHome.getOrdersHomeInstance().setVisible(true);
+        centralController.getInstance().enableNavBtn();
     }//GEN-LAST:event_btnCancelAction
 
     private void qtyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyTyped

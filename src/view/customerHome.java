@@ -5,7 +5,10 @@
  */
 package view;
 
+import controller.centralController;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -162,6 +165,7 @@ public class customerHome extends javax.swing.JPanel {
         searchCustomer.getSearchCustomerInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(searchCustomer.getSearchCustomerInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnSearchCustomerActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -170,6 +174,7 @@ public class customerHome extends javax.swing.JPanel {
         updateCustomer.getUpdateCustomerInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(updateCustomer.getUpdateCustomerInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -178,6 +183,7 @@ public class customerHome extends javax.swing.JPanel {
         deleteCustomer.getDeleteCustomerInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(deleteCustomer.getDeleteCustomerInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
@@ -187,6 +193,7 @@ public class customerHome extends javax.swing.JPanel {
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(viewCustomers.getViewCustomersInstance(), BorderLayout.CENTER);
         viewCustomers.getViewCustomersInstance().setTableInfo();
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnAddCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerAction
@@ -195,6 +202,7 @@ public class customerHome extends javax.swing.JPanel {
         addCustomer.getAddCustomerInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(addCustomer.getAddCustomerInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnAddCustomerAction
 
 

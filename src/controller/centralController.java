@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.customer;
 import model.viewOrderDetails;
+import view.dashboard;
 
 /**
  *
@@ -140,7 +141,27 @@ public class centralController {
         return orderDetails;
     }
     
+    public void disableNavBtn(){
+        JButton customerBtn = dashboard.getHomeInstance().getCustomerBtn();
+        customerBtn.setEnabled(false);
+        
+        JButton ordersBtn = dashboard.getHomeInstance().getOrderBtn();
+        ordersBtn.setEnabled(false);
+        
+        JButton itemBtn = dashboard.getHomeInstance().getItemBtn();
+        itemBtn.setEnabled(false);
+    }
     
+    public void enableNavBtn(){
+        JButton customerBtn = dashboard.getHomeInstance().getCustomerBtn();
+        customerBtn.setEnabled(true);
+        
+        JButton ordersBtn = dashboard.getHomeInstance().getOrderBtn();
+        ordersBtn.setEnabled(true);
+        
+        JButton itemBtn = dashboard.getHomeInstance().getItemBtn();
+        itemBtn.setEnabled(true);
+    }
     
 
 }

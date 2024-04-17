@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.centralController;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -162,6 +163,7 @@ public class ordersHome extends javax.swing.JPanel {
         addOrder.getAddOrderInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(addOrder.getAddOrderInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnAddOrderAction
 
     private void btnSearchOrderAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchOrderAction
@@ -170,6 +172,7 @@ public class ordersHome extends javax.swing.JPanel {
         searchOrder.getSearchOrderInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(searchOrder.getSearchOrderInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnSearchOrderAction
 
     private void btnUpdateAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAction
@@ -178,6 +181,7 @@ public class ordersHome extends javax.swing.JPanel {
         updateOrder.getUpdateOrderInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(updateOrder.getUpdateOrderInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnUpdateAction
 
     private void btnViewAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAction
@@ -187,6 +191,7 @@ public class ordersHome extends javax.swing.JPanel {
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(viewOrders.getViewOrdersInstance(), BorderLayout.CENTER);
         viewOrders.getViewOrdersInstance().setTableInfo();
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnViewAction
 
     private void btnDeleteAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAction
@@ -195,6 +200,7 @@ public class ordersHome extends javax.swing.JPanel {
         deleteOrder.getDeleteOrderInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
         pagePanel.add(deleteOrder.getDeleteOrderInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnDeleteAction
 
 

@@ -216,6 +216,7 @@ public class searchCustomer extends javax.swing.JPanel {
 
         instance.setVisible(false);
         customerHome.getCustomerHomeInstance().setVisible(true);
+        centralController.getInstance().enableNavBtn();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

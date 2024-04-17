@@ -277,6 +277,7 @@ public class deleteCustomer extends javax.swing.JPanel {
 
         instance.setVisible(false);
         customerHome.getCustomerHomeInstance().setVisible(true);
+        centralController.getInstance().enableNavBtn();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void inputCustIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCustIdActionPerformed

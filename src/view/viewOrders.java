@@ -155,6 +155,7 @@ public class viewOrders extends javax.swing.JPanel {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         instance.setVisible(false);
         ordersHome.getOrdersHomeInstance().setVisible(true);
+        centralController.getInstance().enableNavBtn();
     }//GEN-LAST:event_btnCancelActionPerformed
 
 
