@@ -325,14 +325,14 @@ public class updateOrder extends javax.swing.JPanel {
         orderIdInput.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                String value = orderIdInput.getText();
-                displaySearchResult(value);
+                String orderId = orderIdInput.getText();
+                displaySearchResult(orderId);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                String value = orderIdInput.getText();
-                displaySearchResult(value);
+                String orderId = orderIdInput.getText();
+                displaySearchResult(orderId);
             }
 
             @Override

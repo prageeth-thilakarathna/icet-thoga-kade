@@ -115,7 +115,7 @@ public class ordersHome extends javax.swing.JPanel {
         btnDelete.setFocusPainted(false);
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnDeleteAction(evt);
             }
         });
 
@@ -189,13 +189,13 @@ public class ordersHome extends javax.swing.JPanel {
         viewOrders.getViewOrdersInstance().setTableInfo();
     }//GEN-LAST:event_btnViewAction
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
-        deleteCustomer.getDeleteCustomerInstance().setVisible(true);
+        deleteOrder.getDeleteOrderInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
-        pagePanel.add(deleteCustomer.getDeleteCustomerInstance(), BorderLayout.CENTER);
-    }//GEN-LAST:event_btnDeleteActionPerformed
+        pagePanel.add(deleteOrder.getDeleteOrderInstance(), BorderLayout.CENTER);
+    }//GEN-LAST:event_btnDeleteAction
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

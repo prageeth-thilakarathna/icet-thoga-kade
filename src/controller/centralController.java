@@ -125,14 +125,6 @@ public class centralController {
             orderDetails.add(ob);
         }
         
-        for(viewOrderDetails ob : orderDetails){
-            System.out.print(ob.getOrderId()+", ");
-            System.out.print(ob.getCustomerId()+", ");
-            System.out.print(ob.getItemCode()+", ");
-            System.out.print(ob.getQuantity()+", ");
-            System.out.println(ob.getTotal());
-        }
-        
         String sqlDetails = "SELECT * FROM order_detail";
         ResultSet rstDetails = stm.executeQuery(sqlDetails);
         
@@ -143,14 +135,6 @@ public class centralController {
                 String total = df.format(rstDetails.getInt("qty")*rstDetails.getDouble("unitPrice"));
                 ob.setTotal(total);
             }
-        }
-        
-        for(viewOrderDetails ob : orderDetails){
-            System.out.print(ob.getOrderId()+", ");
-            System.out.print(ob.getCustomerId()+", ");
-            System.out.print(ob.getItemCode()+", ");
-            System.out.print(ob.getQuantity()+", ");
-            System.out.println(ob.getTotal());
         }
 
         return orderDetails;
