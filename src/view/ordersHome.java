@@ -101,7 +101,7 @@ public class ordersHome extends javax.swing.JPanel {
         btnView.setFocusPainted(false);
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewActionPerformed(evt);
+                btnViewAction(evt);
             }
         });
 
@@ -180,14 +180,14 @@ public class ordersHome extends javax.swing.JPanel {
         pagePanel.add(updateOrder.getUpdateOrderInstance(), BorderLayout.CENTER);
     }//GEN-LAST:event_btnUpdateAction
 
-    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+    private void btnViewAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAction
         pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
-        viewCustomers.getViewCustomersInstance().setVisible(true);
+        viewOrders.getViewOrdersInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
-        pagePanel.add(viewCustomers.getViewCustomersInstance(), BorderLayout.CENTER);
-        viewCustomers.getViewCustomersInstance().setTableInfo();
-    }//GEN-LAST:event_btnViewActionPerformed
+        pagePanel.add(viewOrders.getViewOrdersInstance(), BorderLayout.CENTER);
+        viewOrders.getViewOrdersInstance().setTableInfo();
+    }//GEN-LAST:event_btnViewAction
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         pagePanel = dashboard.getHomeInstance().getPagePanel();

@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.customer;
+import model.viewOrderDetails;
 
 /**
  *
@@ -109,6 +110,50 @@ public class centralController {
         Connection connection = databaseConnection.getInstance().getConnection();
         Statement stm = connection.createStatement();
         return stm.executeQuery(sql);
+    }
+    
+    public ArrayList<viewOrderDetails> getViewOrderDetails() throws ClassNotFoundException, SQLException {
+        ArrayList<viewOrderDetails> orderDetails = new ArrayList<>();
+        String sql = "SELECT * FROM orders";
+
+        Connection connection = databaseConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        ResultSet rstOrders = stm.executeQuery(sql);
+
+        while (rstOrders.next()) {
+            viewOrderDetails ob = new viewOrderDetails(rstOrders.getString("id"), rstOrders.getString("customerId"));
+            orderDetails.add(ob);
+        }
+        
+        for(viewOrderDetails ob : orderDetails){
+            System.out.print(ob.getOrderId()+", ");
+            System.out.print(ob.getCustomerId()+", ");
+            System.out.print(ob.getItemCode()+", ");
+            System.out.print(ob.getQuantity()+", ");
+            System.out.println(ob.getTotal());
+        }
+        
+        String sqlDetails = "SELECT * FROM order_detail";
+        ResultSet rstDetails = stm.executeQuery(sqlDetails);
+        
+        for(viewOrderDetails ob : orderDetails){
+            if(rstDetails.next()){
+                ob.setItemCode(rstDetails.getString("itemCode"));
+                ob.setQuantity(rstDetails.getString("qty"));
+                String total = df.format(rstDetails.getInt("qty")*rstDetails.getDouble("unitPrice"));
+                ob.setTotal(total);
+            }
+        }
+        
+        for(viewOrderDetails ob : orderDetails){
+            System.out.print(ob.getOrderId()+", ");
+            System.out.print(ob.getCustomerId()+", ");
+            System.out.print(ob.getItemCode()+", ");
+            System.out.print(ob.getQuantity()+", ");
+            System.out.println(ob.getTotal());
+        }
+
+        return orderDetails;
     }
     
     
