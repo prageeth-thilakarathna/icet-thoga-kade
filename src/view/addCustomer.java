@@ -30,6 +30,8 @@ public class addCustomer extends javax.swing.JPanel {
      */
     private addCustomer() {
         initComponents();
+        customerIdDisplay.setEditable(false);
+        customerIdDisplay.setText(centralController.getInstance().getId("customer", "id", "C", "C001"));
     }
 
     public static addCustomer getAddCustomerInstance() {
@@ -44,13 +46,13 @@ public class addCustomer extends javax.swing.JPanel {
     private void initComponents() {
 
         title = new javax.swing.JLabel();
-        customerIdLabel = new javax.swing.JLabel();
-        inputCustId = new javax.swing.JTextField();
-        customerNameLabel = new javax.swing.JLabel();
+        forCustomerId = new javax.swing.JLabel();
+        customerIdDisplay = new javax.swing.JTextField();
+        forCustomerName = new javax.swing.JLabel();
         inputName = new javax.swing.JTextField();
-        addressLabel = new javax.swing.JLabel();
+        forAddress = new javax.swing.JLabel();
         inputAddress = new javax.swing.JTextField();
-        salaryLabel = new javax.swing.JLabel();
+        forSalary = new javax.swing.JLabel();
         inputSalary = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -62,36 +64,36 @@ public class addCustomer extends javax.swing.JPanel {
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("Add Customer Form");
 
-        customerIdLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        customerIdLabel.setForeground(new java.awt.Color(12, 0, 0));
-        customerIdLabel.setText("Customer ID : ");
+        forCustomerId.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forCustomerId.setForeground(new java.awt.Color(12, 0, 0));
+        forCustomerId.setText("Customer ID : ");
 
-        inputCustId.setBackground(new java.awt.Color(199, 200, 204));
-        inputCustId.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        inputCustId.setForeground(new java.awt.Color(12, 0, 0));
-        inputCustId.setBorder(null);
+        customerIdDisplay.setBackground(new java.awt.Color(199, 200, 204));
+        customerIdDisplay.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        customerIdDisplay.setForeground(new java.awt.Color(12, 0, 0));
+        customerIdDisplay.setBorder(null);
 
-        customerNameLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        customerNameLabel.setForeground(new java.awt.Color(12, 0, 0));
-        customerNameLabel.setText("Customer Name : ");
+        forCustomerName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forCustomerName.setForeground(new java.awt.Color(12, 0, 0));
+        forCustomerName.setText("Customer Name : ");
 
         inputName.setBackground(new java.awt.Color(199, 200, 204));
         inputName.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         inputName.setForeground(new java.awt.Color(12, 0, 0));
         inputName.setBorder(null);
 
-        addressLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        addressLabel.setForeground(new java.awt.Color(12, 0, 0));
-        addressLabel.setText("Address : ");
+        forAddress.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forAddress.setForeground(new java.awt.Color(12, 0, 0));
+        forAddress.setText("Address : ");
 
         inputAddress.setBackground(new java.awt.Color(199, 200, 204));
         inputAddress.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         inputAddress.setForeground(new java.awt.Color(12, 0, 0));
         inputAddress.setBorder(null);
 
-        salaryLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        salaryLabel.setForeground(new java.awt.Color(12, 0, 0));
-        salaryLabel.setText("Salary : ");
+        forSalary.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        forSalary.setForeground(new java.awt.Color(12, 0, 0));
+        forSalary.setText("Salary : ");
 
         inputSalary.setBackground(new java.awt.Color(199, 200, 204));
         inputSalary.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -144,16 +146,16 @@ public class addCustomer extends javax.swing.JPanel {
                         .addGap(36, 36, 36))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(customerNameLabel)
-                            .addComponent(addressLabel)
-                            .addComponent(customerIdLabel)
-                            .addComponent(salaryLabel))
+                            .addComponent(forCustomerName)
+                            .addComponent(forAddress)
+                            .addComponent(forCustomerId)
+                            .addComponent(forSalary))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputCustId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(customerIdDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 90, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -163,19 +165,19 @@ public class addCustomer extends javax.swing.JPanel {
                 .addComponent(title)
                 .addGap(86, 86, 86)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(customerIdLabel)
-                    .addComponent(inputCustId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(forCustomerId)
+                    .addComponent(customerIdDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(customerNameLabel)
+                    .addComponent(forCustomerName)
                     .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addressLabel)
+                    .addComponent(forAddress)
                     .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salaryLabel)
+                    .addComponent(forSalary)
                     .addComponent(inputSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -186,25 +188,9 @@ public class addCustomer extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // ok button
-        JButton btnOk = new JButton("OK");
-        btnOk.setFont(new Font("", 1, 14));
-        btnOk.setBackground(centralController.MainColor);
-        btnOk.setForeground(Color.white);
-        btnOk.setBorderPainted(false);
-        btnOk.setFocusPainted(false);
-
-        btnOk.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                JOptionPane.getRootFrame().dispose();
-            }
-        });
-        JButton[] btnOkCustom = {btnOk};
-
         // add customer
         try {
-            String id = inputCustId.getText();
+            String id = customerIdDisplay.getText();
             String name = inputName.getText();
             String address = inputAddress.getText();
             String salary = inputSalary.getText();
@@ -221,22 +207,22 @@ public class addCustomer extends javax.swing.JPanel {
 
             int res = stm.executeUpdate();
             if (res > 0) {
-                JOptionPane.showOptionDialog(null, id + " Customer Added is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, btnOkCustom, btnOkCustom[0]);
-                inputCustId.setText("");
+                String tempId = customerIdDisplay.getText();
+                customerIdDisplay.setText(centralController.getInstance().getId("customer", "id", "C", "C001"));
                 inputName.setText("");
                 inputAddress.setText("");
                 inputSalary.setText("");
+                JOptionPane.showOptionDialog(null, tempId + " Customer Added is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
             } else {
-                JOptionPane.showOptionDialog(null, "Failed! Has some issues with Adding " + id + " Customer.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, btnOkCustom, btnOkCustom[0]);
+                JOptionPane.showOptionDialog(null, "Failed! Has some issues with Adding " + id + " Customer.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
             }
 
         } catch (ClassNotFoundException | SQLException ex) {
-            JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, btnOkCustom, btnOkCustom[0]);
+            JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        inputCustId.setText("");
         inputName.setText("");
         inputAddress.setText("");
         inputSalary.setText("");
@@ -246,18 +232,17 @@ public class addCustomer extends javax.swing.JPanel {
         centralController.getInstance().enableNavBtn();
     }//GEN-LAST:event_btnCancelActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel addressLabel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JLabel customerIdLabel;
-    private javax.swing.JLabel customerNameLabel;
+    private javax.swing.JTextField customerIdDisplay;
+    private javax.swing.JLabel forAddress;
+    private javax.swing.JLabel forCustomerId;
+    private javax.swing.JLabel forCustomerName;
+    private javax.swing.JLabel forSalary;
     private javax.swing.JTextField inputAddress;
-    private javax.swing.JTextField inputCustId;
     private javax.swing.JTextField inputName;
     private javax.swing.JTextField inputSalary;
-    private javax.swing.JLabel salaryLabel;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

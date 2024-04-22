@@ -37,17 +37,17 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="customerNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="addressLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="customerIdLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="salaryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="forCustomerName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="forAddress" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="forCustomerId" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="forSalary" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="inputAddress" alignment="0" min="-2" pref="320" max="-2" attributes="0"/>
                           <Component id="inputSalary" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
-                          <Component id="inputCustId" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="inputName" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="customerIdDisplay" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="38" pref="90" max="32767" attributes="0"/>
                   </Group>
@@ -62,22 +62,22 @@
               <Component id="title" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="customerIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="inputCustId" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="forCustomerId" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="customerIdDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="customerNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="forCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="inputName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="addressLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="forAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="inputAddress" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="salaryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="forSalary" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="inputSalary" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="90" max="32767" attributes="0"/>
@@ -103,7 +103,7 @@
         <Property name="text" type="java.lang.String" value="Add Customer Form"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="customerIdLabel">
+    <Component class="javax.swing.JLabel" name="forCustomerId">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
@@ -114,7 +114,7 @@
         <Property name="text" type="java.lang.String" value="Customer ID : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="inputCustId">
+    <Component class="javax.swing.JTextField" name="customerIdDisplay">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="c8" red="c7" type="rgb"/>
@@ -130,7 +130,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="customerNameLabel">
+    <Component class="javax.swing.JLabel" name="forCustomerName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
@@ -157,7 +157,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="addressLabel">
+    <Component class="javax.swing.JLabel" name="forAddress">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
@@ -184,7 +184,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="salaryLabel">
+    <Component class="javax.swing.JLabel" name="forSalary">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>

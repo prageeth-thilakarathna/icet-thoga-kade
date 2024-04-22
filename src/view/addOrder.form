@@ -353,9 +353,6 @@
           <Border info="null"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="customerNameDisplaycustomerIdKeyTyped"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="orderIdDisplay">
       <Properties>
@@ -372,9 +369,6 @@
           <Border info="null"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="orderIdDisplaycustomerIdKeyTyped"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="qtyError">
       <Properties>

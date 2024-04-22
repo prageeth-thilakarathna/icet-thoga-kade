@@ -5,6 +5,8 @@
  */
 package view;
 
+import controller.centralController;
+import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 /**
@@ -156,12 +158,12 @@ public class itemHome extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddItemAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemAction
-        /*pagePanel = dashboard.getHomeInstance().getPagePanel();
+        pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
-        addCustomer.getAddCustomerInstance().setVisible(true);
+        addItem.getAddItemInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
-        pagePanel.add(addCustomer.getAddCustomerInstance(), BorderLayout.CENTER);
-        centralController.getInstance().disableNavBtn();*/
+        pagePanel.add(addItem.getAddItemInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnAddItemAction
 
     private void btnSearchItemAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchItemAction

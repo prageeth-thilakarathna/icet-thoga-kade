@@ -35,7 +35,7 @@ public class addOrder extends javax.swing.JPanel {
      */
     private addOrder() {
         initComponents();
-        orderIdDisplay.setText(generateId());
+        orderIdDisplay.setText(centralController.getInstance().getId("orders", "id", "D", "D001"));
         orderIdDisplay.setEditable(false);
         customerNameDisplay.setEditable(false);
         btnAdd.setEnabled(false);
@@ -181,21 +181,11 @@ public class addOrder extends javax.swing.JPanel {
         customerNameDisplay.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         customerNameDisplay.setForeground(new java.awt.Color(12, 0, 0));
         customerNameDisplay.setBorder(null);
-        customerNameDisplay.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                customerNameDisplaycustomerIdKeyTyped(evt);
-            }
-        });
 
         orderIdDisplay.setBackground(new java.awt.Color(169, 169, 169));
         orderIdDisplay.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         orderIdDisplay.setForeground(new java.awt.Color(12, 0, 0));
         orderIdDisplay.setBorder(null);
-        orderIdDisplay.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                orderIdDisplaycustomerIdKeyTyped(evt);
-            }
-        });
 
         qtyError.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -309,7 +299,7 @@ public class addOrder extends javax.swing.JPanel {
         stm.setString(3, ob.getCustomerId());
         stm.executeUpdate();
 
-        orderIdDisplay.setText(generateId());
+        orderIdDisplay.setText(centralController.getInstance().getId("orders", "id", "D", "D001"));
         dateDisplay.setText(getDate());
         customerIdInput.setText("");
     }
@@ -325,16 +315,16 @@ public class addOrder extends javax.swing.JPanel {
         int res = stm.executeUpdate();
 
         if (res > 0) {
-            JOptionPane.showOptionDialog(null, ob.getOrderId() + " Order Added is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
             itemBox.setSelectedIndex(0);
             qtyInput.setText("");
+            JOptionPane.showOptionDialog(null, ob.getOrderId() + " Order Added is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
         } else {
             JOptionPane.showOptionDialog(null, "Failed! Has some issues with Adding " + ob.getOrderId() + " Order.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
         }
     }
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        orderIdDisplay.setText(generateId());
+        //orderIdDisplay.setText(centralController.getInstance().getId("orders", "id", "D", "D001"));
         dateDisplay.setText(getDate());
         customerIdInput.setText("");
         itemBox.setSelectedIndex(0);
@@ -364,14 +354,6 @@ public class addOrder extends javax.swing.JPanel {
             }
         });
     }//GEN-LAST:event_customerIdKeyTyped
-
-    private void customerNameDisplaycustomerIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerNameDisplaycustomerIdKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_customerNameDisplaycustomerIdKeyTyped
-
-    private void orderIdDisplaycustomerIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_orderIdDisplaycustomerIdKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_orderIdDisplaycustomerIdKeyTyped
 
     private void selectItemAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectItemAction
         int index = itemBox.getSelectedIndex();
@@ -461,34 +443,6 @@ public class addOrder extends javax.swing.JPanel {
         return null;
     }
 
-    // generate orderId
-    public String generateId() {
-        try {
-            ResultSet resultOrderRowCount = getOrdersSize();
-            resultOrderRowCount.next();
-
-            int size = resultOrderRowCount.getInt("row_count");
-
-            if (size > 0) {
-                ResultSet resultSet = getLastOrderId();
-                resultSet.next();
-
-                String lastId = resultSet.getString("id");
-
-                String[] part = lastId.split("D");
-                int num = Integer.parseInt(part[1]);
-                num++;
-
-                return String.format("D%03d", num);
-            } else {
-                return "D001";
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showOptionDialog(null, e.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
-        }
-        return null;
-    }
-
     // get items
     public ArrayList<item> getItems() {
         ArrayList<item> items = new ArrayList<item>();
@@ -536,20 +490,6 @@ public class addOrder extends javax.swing.JPanel {
     public String getDate() {
         String year = String.valueOf(date.getYear()).charAt(1) + "" + String.valueOf(date.getYear()).charAt(2);
         return "20" + year + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-    }
-
-    public ResultSet getLastOrderId() throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM orders ORDER BY id DESC LIMIT 1";
-        Connection connection = databaseConnection.getInstance().getConnection();
-        Statement stm = connection.createStatement();
-        return stm.executeQuery(sql);
-    }
-
-    public ResultSet getOrdersSize() throws SQLException, ClassNotFoundException {
-        String sql = "SELECT COUNT(*) AS row_count FROM orders";
-        Connection connection = databaseConnection.getInstance().getConnection();
-        Statement stm = connection.createStatement();
-        return stm.executeQuery(sql);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

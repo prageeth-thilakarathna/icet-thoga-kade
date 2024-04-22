@@ -163,5 +163,49 @@ public class centralController {
         itemBtn.setEnabled(true);
     }
     
+    // id generate
+    public String getId(String tableName, String PKColName, String idChar, String firstId){
+        try {
+            ResultSet resultTableRowCount = getTableRowCount(tableName);
+            resultTableRowCount.next();
+
+            int size = resultTableRowCount.getInt("row_count");
+
+            if (size > 0) {
+                ResultSet resultSet = getTableLastId(tableName, PKColName);
+                resultSet.next();
+
+                String lastId = resultSet.getString(PKColName);
+
+                String[] part = lastId.split(idChar);
+                int num = Integer.parseInt(part[1]);
+                num++;
+
+                return String.format(idChar+"%03d", num);
+            } else {
+                return firstId;
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showOptionDialog(null, e.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
+        }
+        return null;
+    }
+    
+    // get table row count
+    private ResultSet getTableRowCount(String tableName) throws ClassNotFoundException, SQLException{
+        String sql = "SELECT COUNT(*) AS row_count FROM "+tableName;
+        Connection connection = databaseConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        return stm.executeQuery(sql);
+    }
+    
+    // get table last id
+    private ResultSet getTableLastId(String tableName, String PKColName) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM "+tableName+" ORDER BY "+PKColName+" DESC LIMIT 1";
+        Connection connection = databaseConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        return stm.executeQuery(sql);
+    }
+    
 
 }
