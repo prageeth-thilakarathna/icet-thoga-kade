@@ -389,7 +389,7 @@ public class addOrder extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_qtyKeyTyped
 
-    public void validateQty(String value, char ch) {
+    private void validateQty(String value, char ch) {
         int length = value.length();
 
         boolean condition = true;

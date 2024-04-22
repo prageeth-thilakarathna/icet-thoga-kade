@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -51,6 +53,8 @@ public class addItem extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         itemCodeDisplay = new javax.swing.JTextField();
+        unitPriceErrorDisplay = new javax.swing.JLabel();
+        qtyOnHandErrorDisplay = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(239, 241, 255));
 
@@ -81,6 +85,11 @@ public class addItem extends javax.swing.JPanel {
         unitPriceInput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         unitPriceInput.setForeground(new java.awt.Color(12, 0, 0));
         unitPriceInput.setBorder(null);
+        unitPriceInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                unitPriceKeyTyped(evt);
+            }
+        });
 
         forQtyOnHand.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         forQtyOnHand.setForeground(new java.awt.Color(12, 0, 0));
@@ -90,6 +99,11 @@ public class addItem extends javax.swing.JPanel {
         qtyOnHandInput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         qtyOnHandInput.setForeground(new java.awt.Color(12, 0, 0));
         qtyOnHandInput.setBorder(null);
+        qtyOnHandInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                qtyOnHandKeyTyped(evt);
+            }
+        });
 
         btnAdd.setBackground(new java.awt.Color(237, 150, 11));
         btnAdd.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -124,6 +138,11 @@ public class addItem extends javax.swing.JPanel {
         itemCodeDisplay.setForeground(new java.awt.Color(12, 0, 0));
         itemCodeDisplay.setBorder(null);
 
+        unitPriceErrorDisplay.setForeground(new java.awt.Color(255, 0, 0));
+
+        qtyOnHandErrorDisplay.setForeground(new java.awt.Color(255, 0, 0));
+        qtyOnHandErrorDisplay.setPreferredSize(new java.awt.Dimension(41, 16));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,10 +165,16 @@ public class addItem extends javax.swing.JPanel {
                     .addComponent(forQtyOnHand)
                     .addComponent(forUnitPrice))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(unitPriceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(unitPriceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(unitPriceErrorDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(descriptionInput, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(qtyOnHandInput, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(qtyOnHandInput, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(qtyOnHandErrorDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(itemCodeDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
@@ -169,11 +194,14 @@ public class addItem extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(forUnitPrice)
-                    .addComponent(unitPriceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(unitPriceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(unitPriceErrorDisplay))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(forQtyOnHand)
-                    .addComponent(qtyOnHandInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(forQtyOnHand)
+                        .addComponent(qtyOnHandInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(qtyOnHandErrorDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,12 +248,87 @@ public class addItem extends javax.swing.JPanel {
         descriptionInput.setText("");
         unitPriceInput.setText("");
         qtyOnHandInput.setText("");
+        qtyOnHandErrorDisplay.setText("");
+        unitPriceErrorDisplay.setText("");
 
         instance.setVisible(false);
         itemHome.getItemHomeInstance().setVisible(true);
         centralController.getInstance().enableNavBtn();
     }//GEN-LAST:event_btnCancelAction
 
+    private void unitPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unitPriceKeyTyped
+        String value = unitPriceInput.getText();
+        char ch = evt.getKeyChar();
+        validateUnitPrice(value, ch);
+    }//GEN-LAST:event_unitPriceKeyTyped
+
+    private void qtyOnHandKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyOnHandKeyTyped
+        String value = qtyOnHandInput.getText();
+        char ch = evt.getKeyChar();
+        validateQtyOnHand(value, ch);
+    }//GEN-LAST:event_qtyOnHandKeyTyped
+
+    private void validateUnitPrice(String value, char ch) {
+        int length = value.length();
+
+        boolean condition = true;
+        int count = 0;
+        if (length > 0) {
+            count++;
+        } else {
+            count = 0;
+        }
+
+        if (count == 0 & ch == '0') {
+            condition = false;
+        }
+
+        if ((length >= 0 && length < 10) & condition & (ch >= '0' && ch <= '9') || (int) ch == 8 || (int) ch == 46) {
+            unitPriceInput.setEditable(true);
+            unitPriceErrorDisplay.setText("");
+        } else {
+            unitPriceInput.setEditable(false);
+
+            if (condition == false) {
+                unitPriceErrorDisplay.setText("* Not a Q==0");
+            } else if (length == 10) {
+                unitPriceErrorDisplay.setText("* only 10 digits");
+            } else {
+                unitPriceErrorDisplay.setText("* only digits(0-9)");
+            }
+        }
+    }
+    
+    private void validateQtyOnHand(String value, char ch){
+        int length = value.length();
+
+        boolean condition = true;
+        int count = 0;
+        if (length > 0) {
+            count++;
+        } else {
+            count = 0;
+        }
+
+        if (count == 0 & ch == '0') {
+            condition = false;
+        }
+
+        if ((length >= 0 && length < 10) & condition & (ch >= '0' && ch <= '9') || (int) ch == 8) {
+            qtyOnHandInput.setEditable(true);
+            qtyOnHandErrorDisplay.setText("");
+        } else {
+            qtyOnHandInput.setEditable(false);
+
+            if (condition == false) {
+                qtyOnHandErrorDisplay.setText("* Not a Q==0");
+            } else if (length == 10) {
+                qtyOnHandErrorDisplay.setText("* only 10 digits");
+            } else {
+                qtyOnHandErrorDisplay.setText("* only digits(0-9)");
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -236,8 +339,10 @@ public class addItem extends javax.swing.JPanel {
     private javax.swing.JLabel forQtyOnHand;
     private javax.swing.JLabel forUnitPrice;
     private javax.swing.JTextField itemCodeDisplay;
+    private javax.swing.JLabel qtyOnHandErrorDisplay;
     private javax.swing.JTextField qtyOnHandInput;
     private javax.swing.JLabel title;
+    private javax.swing.JLabel unitPriceErrorDisplay;
     private javax.swing.JTextField unitPriceInput;
     // End of variables declaration//GEN-END:variables
 }
