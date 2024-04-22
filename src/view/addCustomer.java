@@ -7,14 +7,9 @@ package view;
 
 import database.databaseConnection;
 import controller.centralController;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
