@@ -176,12 +176,12 @@ public class itemHome extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchItemAction
 
     private void btnUpdateItemAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateItemAction
-        /*pagePanel = dashboard.getHomeInstance().getPagePanel();
+        pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
-        updateCustomer.getUpdateCustomerInstance().setVisible(true);
+        updateItem.getUpdateItemInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
-        pagePanel.add(updateCustomer.getUpdateCustomerInstance(), BorderLayout.CENTER);
-        centralController.getInstance().disableNavBtn();*/
+        pagePanel.add(updateItem.getUpdateItemInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnUpdateItemAction
 
     private void btnViewItemsAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewItemsAction

@@ -184,7 +184,7 @@ public class searchItem extends javax.swing.JPanel {
             ResultSet rst = centralController.getInstance().getItem(code);
             rst.next();
             descriptionDisplay.setText(rst.getString("description"));
-            unitPriceDisplay.setText(rst.getString("unitPrice"));
+            unitPriceDisplay.setText("Rs. "+rst.getString("unitPrice"));
             qtyOnHandDisplay.setText(rst.getString("qtyOnHand"));
 
         } catch (ClassNotFoundException | SQLException ex) {
