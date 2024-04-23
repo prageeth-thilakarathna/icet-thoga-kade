@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.customer;
+import model.itemView;
 import model.viewOrderDetails;
 import view.dashboard;
 
@@ -207,5 +208,19 @@ public class centralController {
         return stm.executeQuery(sql);
     }
     
+    public ArrayList<itemView> getViewItems() throws SQLException, ClassNotFoundException{
+        ArrayList<itemView> viewItems = new ArrayList<>();
+        String sql = "SELECT * FROM item";
 
+        Connection connection = databaseConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        ResultSet rst = stm.executeQuery(sql);
+
+        while (rst.next()) {
+            itemView ob = new itemView(rst.getString("code"), rst.getString("description"), rst.getString("unitPrice"), rst.getString("qtyOnHand"));
+            viewItems.add(ob);
+        }
+        
+        return viewItems;
+    }
 }
