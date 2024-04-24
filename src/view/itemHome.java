@@ -195,12 +195,12 @@ public class itemHome extends javax.swing.JPanel {
     }//GEN-LAST:event_btnViewItemsAction
 
     private void btnDeleteItemAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteItemAction
-        /*pagePanel = dashboard.getHomeInstance().getPagePanel();
+        pagePanel = dashboard.getHomeInstance().getPagePanel();
         instance.setVisible(false);
-        deleteCustomer.getDeleteCustomerInstance().setVisible(true);
+        deleteItem.getDeleteItemInstance().setVisible(true);
         pagePanel.setLayout(new BorderLayout());
-        pagePanel.add(deleteCustomer.getDeleteCustomerInstance(), BorderLayout.CENTER);
-        centralController.getInstance().disableNavBtn();*/
+        pagePanel.add(deleteItem.getDeleteItemInstance(), BorderLayout.CENTER);
+        centralController.getInstance().disableNavBtn();
     }//GEN-LAST:event_btnDeleteItemAction
 
 
