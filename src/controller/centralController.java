@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.customer;
+import model.inventory;
 import model.itemView;
 import model.viewOrderDetails;
 import view.dashboard;
@@ -222,5 +223,10 @@ public class centralController {
         }
         
         return viewItems;
+    }
+    
+    // observable
+    public void observable(inventory ob){
+        observerImpl.getObserverImplInstance().update(ob);
     }
 }

@@ -14,9 +14,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Observable;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import model.inventory;
 import model.item;
 import model.order;
 import model.orderDetails;
@@ -317,6 +319,7 @@ public class addOrder extends javax.swing.JPanel {
         if (res > 0) {
             itemBox.setSelectedIndex(0);
             qtyInput.setText("");
+            centralController.getInstance().observable(new inventory(ob.getQty(), 0, ob.getItemCode()));
             JOptionPane.showOptionDialog(null, ob.getOrderId() + " Order Added is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
         } else {
             JOptionPane.showOptionDialog(null, "Failed! Has some issues with Adding " + ob.getOrderId() + " Order.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
@@ -324,7 +327,6 @@ public class addOrder extends javax.swing.JPanel {
     }
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        //orderIdDisplay.setText(centralController.getInstance().getId("orders", "id", "D", "D001"));
         dateDisplay.setText(getDate());
         customerIdInput.setText("");
         itemBox.setSelectedIndex(0);

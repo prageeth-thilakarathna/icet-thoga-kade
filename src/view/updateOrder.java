@@ -14,6 +14,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import model.inventory;
 
 /**
  *
@@ -23,6 +24,7 @@ public class updateOrder extends javax.swing.JPanel {
 
     private static final updateOrder instance = new updateOrder();
     private int qtySearchedValue;
+    private String itemCode;
 
     /**
      * Creates new form updateOrder
@@ -248,6 +250,7 @@ public class updateOrder extends javax.swing.JPanel {
                 int res = stm.executeUpdate(sql);
 
                 if (res > 0) {
+                    centralController.getInstance().observable(new inventory(Integer.parseInt(qtyInput.getText()), qtySearchedValue, itemCode));
                     String id = orderIdInput.getText();
                     orderIdInput.setText("");
                     customerIdDisplay.setText("");
@@ -368,6 +371,7 @@ public class updateOrder extends javax.swing.JPanel {
                         if (rstItem.next()) {
                             itemDisplay.setText(rstItem.getString("description"));
                             qtyInput.setText(rstOrderDetails.getString("qty"));
+                            itemCode = rstOrderDetails.getString("itemCode");
 
                             int qty = Integer.parseInt(rstOrderDetails.getString("qty"));
                             qtySearchedValue = qty;
