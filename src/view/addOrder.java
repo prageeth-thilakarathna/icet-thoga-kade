@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Observable;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -30,7 +29,7 @@ import model.orderDetails;
 public class addOrder extends javax.swing.JPanel {
 
     private static final addOrder instance = new addOrder();
-    private Date date = new Date();
+    private final Date date = new Date();
 
     /**
      * Creates new form addOrder

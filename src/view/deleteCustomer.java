@@ -31,6 +31,10 @@ public class deleteCustomer extends javax.swing.JPanel {
      */
     private deleteCustomer() {
         initComponents();
+
+        inputCustId.setEditable(true);
+        btnSearch.setEnabled(true);
+        btnDelete.setEnabled(false);
     }
 
     public static deleteCustomer getDeleteCustomerInstance() {
@@ -102,11 +106,6 @@ public class deleteCustomer extends javax.swing.JPanel {
         inputCustId.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         inputCustId.setForeground(new java.awt.Color(12, 0, 0));
         inputCustId.setBorder(null);
-        inputCustId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputCustIdActionPerformed(evt);
-            }
-        });
 
         customerIdLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         customerIdLabel.setForeground(new java.awt.Color(12, 0, 0));
@@ -253,12 +252,16 @@ public class deleteCustomer extends javax.swing.JPanel {
 
             int res = stm.executeUpdate(sql);
             if (res > 0) {
-                JOptionPane.showOptionDialog(null, id + " Customer Delete is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, btnOkCustom, btnOkCustom[0]);
+                String tempId = inputCustId.getText();
                 inputCustId.setText("");
                 customerIdValue.setText("");
                 custNameValue.setText("");
                 addressValue.setText("");
                 salaryValue.setText("");
+                inputCustId.setEditable(true);
+                btnSearch.setEnabled(true);
+                btnDelete.setEnabled(false);
+                JOptionPane.showOptionDialog(null, tempId + " Customer Delete is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
             } else {
                 JOptionPane.showOptionDialog(null, "Failed! Has some issues with Deleting " + id + " Customer.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, btnOkCustom, btnOkCustom[0]);
             }
@@ -274,33 +277,16 @@ public class deleteCustomer extends javax.swing.JPanel {
         custNameValue.setText("");
         addressValue.setText("");
         salaryValue.setText("");
+        inputCustId.setEditable(true);
+        btnSearch.setEnabled(true);
+        btnDelete.setEnabled(false);
 
         instance.setVisible(false);
         customerHome.getCustomerHomeInstance().setVisible(true);
         centralController.getInstance().enableNavBtn();
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void inputCustIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCustIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputCustIdActionPerformed
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // ok button
-        JButton btnOk = new JButton("OK");
-        btnOk.setFont(new Font("", 1, 14));
-        btnOk.setBackground(centralController.MainColor);
-        btnOk.setForeground(Color.white);
-        btnOk.setBorderPainted(false);
-        btnOk.setFocusPainted(false);
-
-        btnOk.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                JOptionPane.getRootFrame().dispose();
-            }
-        });
-        JButton[] btnOkCustom = {btnOk};
-
         try {
             // search customer
             String id = inputCustId.getText();
@@ -317,8 +303,12 @@ public class deleteCustomer extends javax.swing.JPanel {
             addressValue.setText(rst.getString("address"));
             salaryValue.setText(rst.getString("salary"));
 
+            inputCustId.setEditable(false);
+            btnSearch.setEnabled(false);
+            btnDelete.setEnabled(true);
+
         } catch (ClassNotFoundException | SQLException ex) {
-            JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, btnOkCustom, btnOkCustom[0]);
+            JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 

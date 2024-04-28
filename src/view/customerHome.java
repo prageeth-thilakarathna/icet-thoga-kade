@@ -7,8 +7,6 @@ package view;
 
 import controller.centralController;
 import java.awt.BorderLayout;
-import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
