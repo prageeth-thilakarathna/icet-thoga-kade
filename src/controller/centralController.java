@@ -48,6 +48,8 @@ public class centralController {
     // colors
     public static final Color MainColor = new Color(98, 99, 213);
     public static final Color SecondColor = new Color(237, 150, 11);
+    public static final Color DarkGrey = new Color(169, 169, 169);
+    public static final Color LightGrey = new Color(199, 200, 204);
     
     public static DecimalFormat df = new DecimalFormat("0.00");
 

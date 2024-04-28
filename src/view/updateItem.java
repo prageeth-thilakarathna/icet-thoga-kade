@@ -23,14 +23,21 @@ public class updateItem extends javax.swing.JPanel {
 
     private static final updateItem instance = new updateItem();
     private String searchDescription;
-    private String searchUnitPrice;
-    private String searchQtyOnHand;
+    private double searchUnitPrice;
+    private int searchQtyOnHand;
 
     /**
      * Creates new form updateItem
      */
     private updateItem() {
         initComponents();
+        btnUpdate.setEnabled(false);
+        descriptionInput.setEditable(false);
+        descriptionInput.setBackground(centralController.DarkGrey);
+        unitPriceInput.setEditable(false);
+        unitPriceInput.setBackground(centralController.DarkGrey);
+        qtyOnHandInput.setEditable(false);
+        qtyOnHandInput.setBackground(centralController.DarkGrey);
     }
 
     public static updateItem getUpdateItemInstance() {
@@ -123,6 +130,11 @@ public class updateItem extends javax.swing.JPanel {
         descriptionInput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         descriptionInput.setForeground(new java.awt.Color(12, 0, 0));
         descriptionInput.setBorder(null);
+        descriptionInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                descriptionKeyTyped(evt);
+            }
+        });
 
         unitPriceInput.setBackground(new java.awt.Color(199, 200, 204));
         unitPriceInput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -238,36 +250,25 @@ public class updateItem extends javax.swing.JPanel {
 
     private void btnUpdateAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAction
         try {
-            // check item code
-            ResultSet rst = centralController.getInstance().getItem(itemCodeInput.getText());
+            String sql = "UPDATE item SET description='" + descriptionInput.getText() + "', unitPrice=" + Double.parseDouble(unitPriceInput.getText()) + ", qtyOnHand=" + Integer.parseInt(qtyOnHandInput.getText()) + " WHERE code='" + itemCodeInput.getText() + "'";
 
-            if (rst.next()) {
-                // check text fields length
-                if (descriptionInput.getText().length() > 0 & unitPriceInput.getText().length() > 0 & qtyOnHandInput.getText().length() > 0) {
-                    // check description, unit price and qty on hand
-                    if (!descriptionInput.getText().equals(searchDescription) || !unitPriceInput.getText().equals(searchUnitPrice) || !qtyOnHandInput.getText().equals(searchQtyOnHand)) {
-                        String sql = "UPDATE item SET description='" + descriptionInput.getText() + "', unitPrice=" + Double.parseDouble(unitPriceInput.getText()) + ", qtyOnHand=" + Integer.parseInt(qtyOnHandInput.getText()) + " WHERE code='" + itemCodeInput.getText() + "'";
+            Connection connection = databaseConnection.getInstance().getConnection();
+            Statement stm = connection.createStatement();
+            stm.executeUpdate(sql);
 
-                        Connection connection = databaseConnection.getInstance().getConnection();
-                        Statement stm = connection.createStatement();
-                        stm.executeUpdate(sql);
-
-                        String tempCode = itemCodeInput.getText();
-                        itemCodeInput.setText("");
-                        descriptionInput.setText("");
-                        unitPriceInput.setText("");
-                        qtyOnHandInput.setText("");
-                        JOptionPane.showOptionDialog(null, tempCode + " Item Update is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
-
-                    } else {
-                        JOptionPane.showOptionDialog(null, "Failed! Please do not enter the previous values.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
-                    }
-                } else {
-                    JOptionPane.showOptionDialog(null, "Failed! Please do not empty the fields..", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
-                }
-            } else {
-                JOptionPane.showOptionDialog(null, "Failed! Please enter the correct item code.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
-            }
+            String tempCode = itemCodeInput.getText();
+            itemCodeInput.setText("");
+            descriptionInput.setText("");
+            unitPriceInput.setText("");
+            qtyOnHandInput.setText("");
+            descriptionInput.setEditable(false);
+            descriptionInput.setBackground(centralController.DarkGrey);
+            unitPriceInput.setEditable(false);
+            unitPriceInput.setBackground(centralController.DarkGrey);
+            qtyOnHandInput.setEditable(false);
+            qtyOnHandInput.setBackground(centralController.DarkGrey);
+            JOptionPane.showOptionDialog(null, tempCode + " Item Update is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
+            
         } catch (ClassNotFoundException | SQLException ex) {
             JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
         }
@@ -284,16 +285,28 @@ public class updateItem extends javax.swing.JPanel {
                 descriptionInput.setText(rst.getString("description"));
                 searchDescription = descriptionInput.getText();
                 unitPriceInput.setText(rst.getString("unitPrice"));
-                searchUnitPrice = unitPriceInput.getText();
+                searchUnitPrice = Double.parseDouble(unitPriceInput.getText());
                 qtyOnHandInput.setText(rst.getString("qtyOnHand"));
-                searchQtyOnHand = qtyOnHandInput.getText();
+                searchQtyOnHand = Integer.parseInt(qtyOnHandInput.getText());
+                descriptionInput.setEditable(true);
+                descriptionInput.setBackground(centralController.LightGrey);
+                unitPriceInput.setEditable(true);
+                unitPriceInput.setBackground(centralController.LightGrey);
+                qtyOnHandInput.setEditable(true);
+                qtyOnHandInput.setBackground(centralController.LightGrey);
             } else {
                 descriptionInput.setText("");
                 searchDescription = "";
                 unitPriceInput.setText("");
-                searchUnitPrice = "";
+                searchUnitPrice = 0.00;
                 qtyOnHandInput.setText("");
-                searchQtyOnHand = "";
+                searchQtyOnHand = 0;
+                descriptionInput.setEditable(false);
+                descriptionInput.setBackground(centralController.DarkGrey);
+                unitPriceInput.setEditable(false);
+                unitPriceInput.setBackground(centralController.DarkGrey);
+                qtyOnHandInput.setEditable(false);
+                qtyOnHandInput.setBackground(centralController.DarkGrey);
             }
 
         } catch (ClassNotFoundException | SQLException ex) {
@@ -306,6 +319,12 @@ public class updateItem extends javax.swing.JPanel {
         descriptionInput.setText("");
         unitPriceInput.setText("");
         qtyOnHandInput.setText("");
+        descriptionInput.setEditable(false);
+        descriptionInput.setBackground(centralController.DarkGrey);
+        unitPriceInput.setEditable(false);
+        unitPriceInput.setBackground(centralController.DarkGrey);
+        qtyOnHandInput.setEditable(false);
+        qtyOnHandInput.setBackground(centralController.DarkGrey);
 
         instance.setVisible(false);
         itemHome.getItemHomeInstance().setVisible(true);
@@ -316,13 +335,119 @@ public class updateItem extends javax.swing.JPanel {
         String value = unitPriceInput.getText();
         char ch = evt.getKeyChar();
         validateUnitPrice(value, ch);
+
+        unitPriceInput.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                double value = Double.parseDouble(unitPriceInput.getText());
+                if (value != searchUnitPrice) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                double value = 0.00;
+
+                if (unitPriceInput.getText().length() > 0) {
+                    value = Double.parseDouble(unitPriceInput.getText());
+                } else {
+                    value = 0.00;
+                }
+
+                if (value != searchUnitPrice) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+
+        });
     }//GEN-LAST:event_unitPriceKeyTyped
 
     private void qtyOnHandKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyOnHandKeyTyped
         String value = qtyOnHandInput.getText();
         char ch = evt.getKeyChar();
         validateQtyOnHand(value, ch);
+
+        qtyOnHandInput.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                int value = Integer.parseInt(qtyOnHandInput.getText());
+                if (value != searchQtyOnHand) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                int value = 0;
+
+                if (qtyOnHandInput.getText().length() > 0) {
+                    value = Integer.parseInt(qtyOnHandInput.getText());
+                } else {
+                    value = 0;
+                }
+
+                if (value != searchQtyOnHand) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+
+        });
     }//GEN-LAST:event_qtyOnHandKeyTyped
+
+    private void descriptionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionKeyTyped
+        descriptionInput.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String value = descriptionInput.getText();
+                if (!value.equals(searchDescription)) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String value = descriptionInput.getText();
+                if (!value.equals(searchDescription)) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                String value = descriptionInput.getText();
+                if (!value.equals(searchDescription)) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+        });
+    }//GEN-LAST:event_descriptionKeyTyped
 
     private void validateUnitPrice(String value, char ch) {
         int length = value.length();
@@ -339,7 +464,7 @@ public class updateItem extends javax.swing.JPanel {
             condition = false;
         }
 
-        if ((length >= 0 && length < 10) & condition & (ch >= '0' && ch <= '9') || (int) ch == 8 || (int) ch == 46) {
+        if ((length >= 0 && length < 9) & condition & (ch >= '0' && ch <= '9') || (int) ch == 8 || (int) ch == 46) {
             unitPriceInput.setEditable(true);
             unitPriceErrorDisplay.setText("");
         } else {
@@ -347,8 +472,8 @@ public class updateItem extends javax.swing.JPanel {
 
             if (condition == false) {
                 unitPriceErrorDisplay.setText("* Not a Q==0");
-            } else if (length == 10) {
-                unitPriceErrorDisplay.setText("* only 10 digits");
+            } else if (length == 9) {
+                unitPriceErrorDisplay.setText("* only 08 digits");
             } else {
                 unitPriceErrorDisplay.setText("* only digits(0-9)");
             }
@@ -370,7 +495,7 @@ public class updateItem extends javax.swing.JPanel {
             condition = false;
         }
 
-        if ((length >= 0 && length < 10) & condition & (ch >= '0' && ch <= '9') || (int) ch == 8) {
+        if ((length >= 0 && length < 8) & condition & (ch >= '0' && ch <= '9') || (int) ch == 8) {
             qtyOnHandInput.setEditable(true);
             qtyOnHandErrorDisplay.setText("");
         } else {
@@ -378,8 +503,8 @@ public class updateItem extends javax.swing.JPanel {
 
             if (condition == false) {
                 qtyOnHandErrorDisplay.setText("* Not a Q==0");
-            } else if (length == 10) {
-                qtyOnHandErrorDisplay.setText("* only 10 digits");
+            } else if (length == 8) {
+                qtyOnHandErrorDisplay.setText("* only 08 digits");
             } else {
                 qtyOnHandErrorDisplay.setText("* only digits(0-9)");
             }

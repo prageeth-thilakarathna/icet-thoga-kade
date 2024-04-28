@@ -33,6 +33,7 @@ public class updateOrder extends javax.swing.JPanel {
         initComponents();
         btnUpdate.setEnabled(false);
         qtyInput.setEditable(false);
+        qtyInput.setBackground(centralController.DarkGrey);
     }
 
     public static updateOrder getUpdateOrderInstance() {
@@ -241,31 +242,29 @@ public class updateOrder extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAction
-        if (Integer.parseInt(qtyInput.getText()) != qtySearchedValue) {
-            String sql = "UPDATE order_detail SET qty=" + Integer.parseInt(qtyInput.getText()) + " WHERE orderId='" + orderIdInput.getText() + "'";
+        String sql = "UPDATE order_detail SET qty=" + Integer.parseInt(qtyInput.getText()) + " WHERE orderId='" + orderIdInput.getText() + "'";
 
-            try {
-                Connection connection = databaseConnection.getInstance().getConnection();
-                Statement stm = connection.createStatement();
-                int res = stm.executeUpdate(sql);
+        try {
+            Connection connection = databaseConnection.getInstance().getConnection();
+            Statement stm = connection.createStatement();
+            int res = stm.executeUpdate(sql);
 
-                if (res > 0) {
-                    centralController.getInstance().observable(new inventory(Integer.parseInt(qtyInput.getText()), qtySearchedValue, itemCode));
-                    String id = orderIdInput.getText();
-                    orderIdInput.setText("");
-                    customerIdDisplay.setText("");
-                    customerNameDisplay.setText("");
-                    itemDisplay.setText("");
-                    qtyInput.setText("");
-                    totalDisplay.setText("");
-                    JOptionPane.showOptionDialog(null, id + " Order Update is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
-                }
-
-            } catch (ClassNotFoundException | SQLException ex) {
-                JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
+            if (res > 0) {
+                centralController.getInstance().observable(new inventory(Integer.parseInt(qtyInput.getText()), qtySearchedValue, itemCode));
+                String id = orderIdInput.getText();
+                orderIdInput.setText("");
+                customerIdDisplay.setText("");
+                customerNameDisplay.setText("");
+                itemDisplay.setText("");
+                qtyInput.setText("");
+                totalDisplay.setText("");
+                qtyInput.setEditable(false);
+                qtyInput.setBackground(centralController.DarkGrey);
+                JOptionPane.showOptionDialog(null, id + " Order Update is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
             }
-        } else {
-            JOptionPane.showOptionDialog(null, "Failed! Please do not enter the previous quantity.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
         }
     }//GEN-LAST:event_btnUpdateAction
 
@@ -276,6 +275,8 @@ public class updateOrder extends javax.swing.JPanel {
         itemDisplay.setText("");
         qtyInput.setText("");
         totalDisplay.setText("");
+        qtyInput.setEditable(false);
+        qtyInput.setBackground(centralController.DarkGrey);
 
         instance.setVisible(false);
         ordersHome.getOrdersHomeInstance().setVisible(true);
@@ -287,11 +288,40 @@ public class updateOrder extends javax.swing.JPanel {
         char ch = evt.getKeyChar();
         validateQty(value, ch);
 
-        if (value.length() > 0 || (ch >= '1' && ch <= '9')) {
-            btnUpdate.setEnabled(true);
-        } else {
-            btnUpdate.setEnabled(false);
-        }
+        qtyInput.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                int value = Integer.parseInt(qtyInput.getText());
+                if (value != qtySearchedValue) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                int value = 0;
+
+                if (qtyInput.getText().length() > 0) {
+                    value = Integer.parseInt(qtyInput.getText());
+                } else {
+                    value = 0;
+                }
+
+                if (value != qtySearchedValue) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+
+        });
     }//GEN-LAST:event_qtyKeyTyped
 
     private void validateQty(String value, char ch) {
@@ -380,6 +410,7 @@ public class updateOrder extends javax.swing.JPanel {
                             String total = centralController.df.format(qty * unitPrice);
                             totalDisplay.setText("Rs. " + total);
                             qtyInput.setEditable(true);
+                            qtyInput.setBackground(centralController.LightGrey);
                         }
                     }
                 }

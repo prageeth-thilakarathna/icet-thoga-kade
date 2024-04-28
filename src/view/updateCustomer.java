@@ -7,17 +7,14 @@ package view;
 
 import database.databaseConnection;
 import controller.centralController;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -26,6 +23,9 @@ import javax.swing.JOptionPane;
 public class updateCustomer extends javax.swing.JPanel {
 
     private static final updateCustomer instance = new updateCustomer();
+    private String searchName;
+    private String searchAddress;
+    private double searchSalary;
 
     /**
      * Creates new form updateCustomer
@@ -33,6 +33,16 @@ public class updateCustomer extends javax.swing.JPanel {
     private updateCustomer() {
         initComponents();
         custID.setEditable(false);
+        btnUpdate.setEnabled(false);
+        btnSearch.setEnabled(true);
+        inputCustId.setEditable(true);
+        inputCustId.setBackground(centralController.LightGrey);
+        inputSalary.setEditable(false);
+        inputSalary.setBackground(centralController.DarkGrey);
+        inputAddress.setEditable(false);
+        inputAddress.setBackground(centralController.DarkGrey);
+        inputName.setEditable(false);
+        inputName.setBackground(centralController.DarkGrey);
     }
 
     public static updateCustomer getUpdateCustomerInstance() {
@@ -60,6 +70,7 @@ public class updateCustomer extends javax.swing.JPanel {
         salaryLabel = new javax.swing.JLabel();
         inputSalary = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
+        salaryErrorDisplay = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(239, 241, 255));
 
@@ -76,11 +87,6 @@ public class updateCustomer extends javax.swing.JPanel {
         inputCustId.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         inputCustId.setForeground(new java.awt.Color(12, 0, 0));
         inputCustId.setBorder(null);
-        inputCustId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputCustIdActionPerformed(evt);
-            }
-        });
 
         btnUpdate.setBackground(new java.awt.Color(0, 127, 115));
         btnUpdate.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -114,7 +120,7 @@ public class updateCustomer extends javax.swing.JPanel {
         customerIdLabel.setForeground(new java.awt.Color(12, 0, 0));
         customerIdLabel.setText("Customer ID : ");
 
-        custID.setBackground(new java.awt.Color(199, 200, 204));
+        custID.setBackground(new java.awt.Color(169, 169, 169));
         custID.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         custID.setForeground(new java.awt.Color(12, 0, 0));
         custID.setBorder(null);
@@ -127,6 +133,11 @@ public class updateCustomer extends javax.swing.JPanel {
         inputName.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         inputName.setForeground(new java.awt.Color(12, 0, 0));
         inputName.setBorder(null);
+        inputName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                customerNameKeyTyped(evt);
+            }
+        });
 
         addressLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         addressLabel.setForeground(new java.awt.Color(12, 0, 0));
@@ -136,6 +147,11 @@ public class updateCustomer extends javax.swing.JPanel {
         inputAddress.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         inputAddress.setForeground(new java.awt.Color(12, 0, 0));
         inputAddress.setBorder(null);
+        inputAddress.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                addressKeyTyped(evt);
+            }
+        });
 
         salaryLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         salaryLabel.setForeground(new java.awt.Color(12, 0, 0));
@@ -145,6 +161,11 @@ public class updateCustomer extends javax.swing.JPanel {
         inputSalary.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         inputSalary.setForeground(new java.awt.Color(12, 0, 0));
         inputSalary.setBorder(null);
+        inputSalary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                salaryKeyTyped(evt);
+            }
+        });
 
         btnSearch.setBackground(new java.awt.Color(237, 150, 11));
         btnSearch.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -159,6 +180,8 @@ public class updateCustomer extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
+
+        salaryErrorDisplay.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -187,11 +210,14 @@ public class updateCustomer extends javax.swing.JPanel {
                             .addComponent(customerIdLabel)
                             .addComponent(salaryLabel))
                         .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(custID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(inputSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(salaryErrorDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(enterCustIdLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -222,7 +248,8 @@ public class updateCustomer extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salaryLabel)
-                    .addComponent(inputSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salaryErrorDisplay))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,27 +259,7 @@ public class updateCustomer extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inputCustIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCustIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputCustIdActionPerformed
-
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // ok button
-        JButton btnOk = new JButton("OK");
-        btnOk.setFont(new Font("", 1, 14));
-        btnOk.setBackground(centralController.MainColor);
-        btnOk.setForeground(Color.white);
-        btnOk.setBorderPainted(false);
-        btnOk.setFocusPainted(false);
-
-        btnOk.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                JOptionPane.getRootFrame().dispose();
-            }
-        });
-        JButton[] btnOkCustom = {btnOk};
-
         try {
             // update customer
             String id = custID.getText();
@@ -272,18 +279,29 @@ public class updateCustomer extends javax.swing.JPanel {
 
             int res = stm.executeUpdate();
             if (res > 0) {
-                JOptionPane.showOptionDialog(null, id + " Customer Update is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, btnOkCustom, btnOkCustom[0]);
+                String tempId = inputCustId.getText();
                 inputCustId.setText("");
                 custID.setText("");
                 inputName.setText("");
                 inputAddress.setText("");
                 inputSalary.setText("");
+                btnUpdate.setEnabled(false);
+                btnSearch.setEnabled(true);
+                inputCustId.setEditable(true);
+                inputCustId.setBackground(centralController.LightGrey);
+                inputSalary.setEditable(false);
+                inputSalary.setBackground(centralController.DarkGrey);
+                inputAddress.setEditable(false);
+                inputAddress.setBackground(centralController.DarkGrey);
+                inputName.setEditable(false);
+                inputName.setBackground(centralController.DarkGrey);
+                JOptionPane.showOptionDialog(null, tempId + " Customer Update is Successful.", "Success", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.successIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
             } else {
-                JOptionPane.showOptionDialog(null, "Failed! Has some issues with Updating " + id + " Customer.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, btnOkCustom, btnOkCustom[0]);
+                JOptionPane.showOptionDialog(null, "Failed! Has some issues with Updating " + id + " Customer.", "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
             }
 
         } catch (ClassNotFoundException | SQLException ex) {
-            JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, btnOkCustom, btnOkCustom[0]);
+            JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -293,6 +311,16 @@ public class updateCustomer extends javax.swing.JPanel {
         inputName.setText("");
         inputAddress.setText("");
         inputSalary.setText("");
+        btnUpdate.setEnabled(false);
+        btnSearch.setEnabled(true);
+        inputCustId.setEditable(true);
+        inputCustId.setBackground(centralController.LightGrey);
+        inputSalary.setEditable(false);
+        inputSalary.setBackground(centralController.DarkGrey);
+        inputAddress.setEditable(false);
+        inputAddress.setBackground(centralController.DarkGrey);
+        inputName.setEditable(false);
+        inputName.setBackground(centralController.DarkGrey);
 
         instance.setVisible(false);
         customerHome.getCustomerHomeInstance().setVisible(true);
@@ -300,22 +328,6 @@ public class updateCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // ok button
-        JButton btnOk = new JButton("OK");
-        btnOk.setFont(new Font("", 1, 14));
-        btnOk.setBackground(centralController.MainColor);
-        btnOk.setForeground(Color.white);
-        btnOk.setBorderPainted(false);
-        btnOk.setFocusPainted(false);
-
-        btnOk.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                JOptionPane.getRootFrame().dispose();
-            }
-        });
-        JButton[] btnOkCustom = {btnOk};
-
         try {
             // search customer
             String id = inputCustId.getText();
@@ -329,14 +341,169 @@ public class updateCustomer extends javax.swing.JPanel {
 
             custID.setText(rst.getString("id"));
             inputName.setText(rst.getString("name"));
+            searchName = inputName.getText();
             inputAddress.setText(rst.getString("address"));
+            searchAddress = inputAddress.getText();
             inputSalary.setText(rst.getString("salary"));
+            searchSalary = Double.parseDouble(inputSalary.getText());
+            btnUpdate.setEnabled(false);
+            btnSearch.setEnabled(false);
+            inputCustId.setEditable(false);
+            inputCustId.setBackground(centralController.DarkGrey);
+            inputSalary.setEditable(true);
+            inputSalary.setBackground(centralController.LightGrey);
+            inputAddress.setEditable(true);
+            inputAddress.setBackground(centralController.LightGrey);
+            inputName.setEditable(true);
+            inputName.setBackground(centralController.LightGrey);
 
         } catch (ClassNotFoundException | SQLException ex) {
-            JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, btnOkCustom, btnOkCustom[0]);
+            JOptionPane.showOptionDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, centralController.errorIcon, centralController.getInstance().getOkButton(), centralController.getInstance().getOkButton()[0]);
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void customerNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerNameKeyTyped
+        inputName.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String value = inputName.getText();
+                if (!value.equals(searchName)) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String value = inputName.getText();
+                if (!value.equals(searchName)) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                String value = inputName.getText();
+                if (!value.equals(searchName)) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+        });
+    }//GEN-LAST:event_customerNameKeyTyped
+
+    private void addressKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addressKeyTyped
+        inputAddress.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String value = inputAddress.getText();
+                if (!value.equals(searchAddress)) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String value = inputAddress.getText();
+                if (!value.equals(searchAddress)) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                String value = inputAddress.getText();
+                if (!value.equals(searchAddress)) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+        });
+    }//GEN-LAST:event_addressKeyTyped
+
+    private void salaryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_salaryKeyTyped
+        String value = inputSalary.getText();
+        char ch = evt.getKeyChar();
+        validateSalary(value, ch);
+        inputSalary.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                double value = Double.parseDouble(inputSalary.getText());
+                if (value != searchSalary) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                double value = 0.00;
+
+                if (inputSalary.getText().length() > 0) {
+                    value = Double.parseDouble(inputSalary.getText());
+                } else {
+                    value = 0.00;
+                }
+
+                if (value != searchSalary) {
+                    btnUpdate.setEnabled(true);
+                } else {
+                    btnUpdate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+
+        });
+    }//GEN-LAST:event_salaryKeyTyped
+
+    private void validateSalary(String value, char ch) {
+        int length = value.length();
+
+        boolean condition = true;
+        int count = 0;
+        if (length > 0) {
+            count++;
+        } else {
+            count = 0;
+        }
+
+        if (count == 0 & ch == '0') {
+            condition = false;
+        }
+
+        if ((length >= 0 && length < 11) & condition & (ch >= '0' && ch <= '9') || (int) ch == 8 || (int) ch == 46) {
+            inputSalary.setEditable(true);
+            salaryErrorDisplay.setText("");
+        } else {
+            inputSalary.setEditable(false);
+
+            if (condition == false) {
+                salaryErrorDisplay.setText("* Not a Q==0");
+            } else if (length == 11) {
+                salaryErrorDisplay.setText("* only 10 digits");
+            } else {
+                salaryErrorDisplay.setText("* only digits(0-9)");
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
@@ -351,6 +518,7 @@ public class updateCustomer extends javax.swing.JPanel {
     private javax.swing.JTextField inputCustId;
     private javax.swing.JTextField inputName;
     private javax.swing.JTextField inputSalary;
+    private javax.swing.JLabel salaryErrorDisplay;
     private javax.swing.JLabel salaryLabel;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
